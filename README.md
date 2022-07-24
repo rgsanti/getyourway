@@ -74,10 +74,9 @@ The backend Spring config is located within src/main/resources/
 
 ### Frontend notes
 
-- agent.ts defines the links to the controller endpoints on the backend
-  Missing:
+- agent.ts defines the links to the controller endpoints on the backend - this doesn't deal with journey and trains yet.
 - Not added postcode as part of the register form, but it is defined in the db schema/backend.
 - `currencyCode` was added as part of the search as Amadeus flight API returns the flight costs in the airline’s
   currency -
-  this ensureS it's converted to GBP (default) or the desired currency.
+  this ensures it's converted to GBP (default) or the desired currency.
 - The datepicker needs configured to prevent you choosing a date before today or after a certain date.
