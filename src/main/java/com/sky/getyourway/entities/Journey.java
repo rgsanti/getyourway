@@ -2,6 +2,7 @@ package com.sky.getyourway.entities;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
@@ -39,7 +40,7 @@ public class Journey {
     @Column(name = "date_time_created", nullable = false)
     private LocalDateTime dateTimeCreated;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     @Column(name = "date_time_updated", nullable = false)
     private LocalDateTime dateTimeUpdated;
 

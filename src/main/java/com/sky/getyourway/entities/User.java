@@ -5,8 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -33,6 +35,7 @@ public class User {
     @NotNull
     private String lastName;
 
+    @Email
     @Column(name = "email_address", unique = true, nullable = false)
     private String email;
 
@@ -55,7 +58,7 @@ public class User {
     @Column(name = "date_time_created", nullable = false)
     private LocalDateTime dateTimeCreated;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     @Column(name = "date_time_updated", nullable = false)
     private LocalDateTime dateTimeUpdated;
 
