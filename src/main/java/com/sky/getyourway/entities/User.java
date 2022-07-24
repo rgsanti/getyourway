@@ -2,44 +2,65 @@ package com.sky.getyourway.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
 @Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "user", schema = "getyourway")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 50)
     @NotNull
     private String firstName;
 
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 50)
     @NotNull
     private String lastName;
 
-    @Email
-    @NotNull
+    @Column(name = "email_address", unique = true, nullable = false)
     private String email;
 
-    // TODO: Validation for password format?
-    @NotNull
+    @Size(min = 8)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Size(min = 11, max = 11)
+    // max 20 to cater for international numbers
+    @Size(min = 11, max = 20)
     @NotNull
     private String phoneNumber;
 
     @Size(min = 5, max = 8)
     private String postcode;
+
+    @Column(name = "username", unique = true, nullable = false)
+    private String username;
+
+    @CreationTimestamp
+    @Column(name = "date_time_created", nullable = false)
+    private LocalDateTime dateTimeCreated;
+
+    @CreationTimestamp
+    @Column(name = "date_time_updated", nullable = false)
+    private LocalDateTime dateTimeUpdated;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Journey> journeyList = new ArrayList<>();
+
 }

@@ -1,17 +1,19 @@
 package com.sky.getyourway.entities;
 
 import lombok.Data;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
-@Entity
+@MappedSuperclass
+@NoArgsConstructor
 @Data
-public class Transport {
+public abstract class Transport implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +25,17 @@ public class Transport {
     @NotNull
     private String destination;
 
-    @NotNull
     @Digits(integer = 10, fraction = 2) // 10 digits, 2 decimals
-    private double price;
+    @Column(name = "price", nullable = false)
+    private Double price;
 
     @NotNull
-    private long time; // time since epoch
+    private Long time; // time since epoch
 
+    @NotNull
+    private Integer journeyStepOrder;
+
+    @CreationTimestamp
+    @Column(name = "date_time_created", nullable = false)
+    private LocalDateTime dateTimeCreated;
 }

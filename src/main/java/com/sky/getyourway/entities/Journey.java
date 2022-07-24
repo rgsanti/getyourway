@@ -1,15 +1,21 @@
 package com.sky.getyourway.entities;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "journey", schema = "getyourway")
+@Builder(toBuilder = true)
 public class Journey {
 
     @Id
@@ -24,11 +30,29 @@ public class Journey {
 
     @NotNull
     @Digits(integer = 10, fraction = 2) // 10 digits, 2 decimals
-    private double price;
+    private double totalPrice;
 
     @NotNull
-    private long time; // time since epoch
+    private Long time; // time since epoch
 
-    @NotNull
-    private List<Transport> steps;
+    @CreationTimestamp
+    @Column(name = "date_time_created", nullable = false)
+    private LocalDateTime dateTimeCreated;
+
+    @CreationTimestamp
+    @Column(name = "date_time_updated", nullable = false)
+    private LocalDateTime dateTimeUpdated;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "journey", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Flight> flightSteps = new ArrayList<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "journey", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Train> trainSteps = new ArrayList<>();
+
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
