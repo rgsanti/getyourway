@@ -34,7 +34,7 @@ public class Journey {
     private double totalPrice;
 
     @NotNull
-    private Long time; // time since epoch
+    private Long time; // total duration in seconds
 
     @CreationTimestamp
     @Column(name = "date_time_created", nullable = false)

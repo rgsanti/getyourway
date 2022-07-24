@@ -102,6 +102,9 @@ public class FlightServiceImpl implements FlightService
     {
         Flight flight = flightRepository.findByIdAndUserId(id, userServiceImpl.getCurrentUser().getId());
 
+        // if no flight returned - throw an error to the user:
+        //     it means the flight entry is not associated with the current user / the session timed-out
+        //     or, it had already been deleted
         if (flight == null){
             throw new UnauthorizedRequestException("Flight deletion not allowed!");
         }

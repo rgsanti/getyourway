@@ -3,10 +3,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## First time setup
-> cd  frontend/ &&  npm install  --legacy-peer-deps
+> npm install  --legacy-peer-deps
 
-## To start frontend on localhost:3000
->cd frontend/ && npm start
+## To start the frontend on localhost:3000
+> npm start
 
 # Getting Started with Create React App
 

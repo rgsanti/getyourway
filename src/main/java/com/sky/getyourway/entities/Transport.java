@@ -30,7 +30,7 @@ public abstract class Transport implements Serializable {
     private Double price;
 
     @NotNull
-    private Long time; // time since epoch
+    private Long time; // duration in seconds
 
     @NotNull
     private Integer journeyStepOrder;

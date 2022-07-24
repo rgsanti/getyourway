@@ -23,11 +23,10 @@ const LogoutForm = () => {
                         <Grid.Column>
                             <Button.Group size='huge' widths='3'>
                                 <Button onClick={userStore.logout} positive>
-                                    Logout
+                                    Yes
                                 </Button>
-                                <Button.Or />
                                 <Button onClick={modalStore.closeModal} secondary>
-                                    Cancel
+                                    No
                                 </Button>
                             </Button.Group>
                         </Grid.Column>

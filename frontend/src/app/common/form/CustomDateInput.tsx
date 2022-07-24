@@ -6,7 +6,7 @@ import DatePicker, {ReactDatePickerProps} from 'react-datepicker';
 const CustomDateInput = (props: Partial<ReactDatePickerProps>) => {
     const [field, meta, helpers] = useField(props.name!);
 
-    var date = new Date(field.value);
+    const date = new Date(field.value);
 
     date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
