@@ -49,7 +49,7 @@ Things worth noting regarding the schema:
         - 1 row in the train table
             - train row: {origin:GLA,dest:EDI,journey_step_order:2,journey_id:1}
 - `transfer_count`: when it is one it means it is a direct flight, more than one means there are `transfer_count - 1`
-  connections
+  connections.
 
 The `liquibase` plugin is used to create the database tables for us and keep track of any manual changes done to the
 database. Aka
@@ -69,7 +69,7 @@ The backend Spring config is located within src/main/resources/
   local
 - application-common.yml contains the defaults
   Example: You want to change the local-profile backend logging level to DEBUG:
-- Within application-local.properties add this line then restart the springboot server:
+  - Within application-local.properties add this line then restart the springboot server:
   > logging.level.org.springframework.web=DEBUG
 
 ### Frontend notes
