@@ -1,7 +1,6 @@
 package com.sky.getyourway.service.impl;
 
 import com.sky.getyourway.dto.flight.FlightDTO;
-import com.sky.getyourway.dto.flight.FlightSaveSearchDTO;
 import com.sky.getyourway.dto.flight.FlightSearchDTO;
 import com.sky.getyourway.entities.Flight;
 import com.sky.getyourway.entities.Journey;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,32 +43,6 @@ public class FlightServiceImpl implements FlightService
     public List<FlightDTO> search(String jwt, FlightSearchDTO searchDTO)
     {
         return airApiService.requestFlightOffersSearch(jwt, searchDTO);
-    }
-
-    @Override
-    public List<FlightDTO> searchSave(FlightSaveSearchDTO searchDTO)
-    {
-        String origin = searchDTO.getOriginLocationCode();
-        String destination = searchDTO.getDestinationLocationCode();
-        String departureDate = "";
-        String returnDate = "";
-        Integer passengerCount = searchDTO.getPassengerCount();
-        String currencyCode = searchDTO.getCurrencyCode();
-
-        if(!Objects.isNull(searchDTO.getDepartureDate()))
-            departureDate = searchDTO.getDepartureDate().toString();
-
-        if(!Objects.isNull(searchDTO.getReturnDate()))
-            returnDate = searchDTO.getReturnDate().toString();
-
-        List<Flight> flightList = flightRepository.findAllByParam(
-                userServiceImpl.getCurrentUser().getId(),
-                origin, destination, departureDate,
-                returnDate, passengerCount, currencyCode
-        );
-
-        return flightList.stream().map(converterUtil::convertToDTO)
-                .collect(Collectors.toList());
     }
 
     @Override

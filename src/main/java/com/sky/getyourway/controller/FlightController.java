@@ -1,7 +1,6 @@
 package com.sky.getyourway.controller;
 
 import com.sky.getyourway.dto.flight.FlightDTO;
-import com.sky.getyourway.dto.flight.FlightSaveSearchDTO;
 import com.sky.getyourway.dto.flight.FlightSearchDTO;
 import com.sky.getyourway.dto.user.UserDTO;
 import com.sky.getyourway.service.FlightService;
@@ -29,7 +28,7 @@ public class FlightController
     @GetMapping("/save")
     public ResponseEntity<?> getAllSave()
     {
-        log.debug("Retrieving saved flight offers");
+        log.debug("Retrieving saved flights for the current user's journey");
         return ResponseEntity.ok(flightService.findAllSave());
     }
 
@@ -56,16 +55,6 @@ public class FlightController
         UserDTO userDTO = userService.findCurrentUserAirToken(jwt.split(" ")[1]);
 
         List<FlightDTO> flightDTOList = flightService.search(userDTO.getAirToken(), searchDTO);
-        return ResponseEntity.ok(flightDTOList);
-    }
-
-    @PostMapping("/save/search")
-    public ResponseEntity<?> searchSave(@Valid @RequestBody FlightSaveSearchDTO searchDTO, Errors errors)
-    {
-        if (errors.hasErrors()) throw new BadRequestException(errors);
-        log.debug(searchDTO.toString());
-
-        List<FlightDTO> flightDTOList = flightService.searchSave(searchDTO);
         return ResponseEntity.ok(flightDTOList);
     }
 

@@ -103,25 +103,4 @@ export default class FlightStore {
             throw error;
         }
     }
-
-    searchSavedFlights = async (search: FlightSearchFormValues) => {
-        this.loadingSearch = true;
-
-        try {
-            const flights = await agent.FlightAgent.searchSave(search);
-
-            runInAction(() => {
-                this.savedFlights = flights
-            })
-
-            this.loadingSearch = false;
-
-            if (flights.length > 0) toast.info("Found " + flights.length + " result(s)!");
-            else toast.info("No results were found!");
-        }
-        catch (error) {
-            this.loadingSearch = false;
-            throw error;
-        }
-    }
 }

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {observer} from 'mobx-react-lite';
 import {Button, Grid, Label} from 'semantic-ui-react';
 import {useStore} from '../../../store/store';

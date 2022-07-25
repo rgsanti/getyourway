@@ -34,7 +34,7 @@ amadeus:
 
 jwt:
   token:
-    expiration: 3600  #60min session expiry
+    expiration: 1799  #30min expiry
     secret: MzMzYjg3YTRmYmU0YmM4YzJkZWE4NTJlZGEzMDgzZjkzOWNjM2MwMWQ4NzI2MjgwZWU0MzM5ZTY0MGEzMjg1YzIwMjU1MWM5ZTNkMzg5YWNiMjExNGJlMTE4NjZlMWMxODIxNjYwMTBkZTRiZWRlNzU3MDc5ZThhMDcxMjlkMGE
 
 server:

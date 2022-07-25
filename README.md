@@ -8,7 +8,7 @@
 3. install the maven dependencies for the spring-boot project
    > mvn install
 4. install the npm dependencies for the frontend
-   > cd frontend/ && npm install --legacy-peer-deps && cd ..
+   > cd frontend/ && npm install && cd ..
 
 ### To start the server (also creates the DB tables)
 

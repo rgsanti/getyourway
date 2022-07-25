@@ -1,4 +1,4 @@
-import axios, {AxiosResponse} from 'axios';
+import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {Flight, FlightFormValues, FlightSearchFormValues} from '../models/flight';
 import {LoginFormValues, RegisterFormValues, User} from '../models/user';
 import {store} from '../store/store';
@@ -7,11 +7,14 @@ axios.defaults.baseURL = "http://localhost:8090/api";
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
-axios.interceptors.request.use(config => {
+axios.interceptors.request.use(async (config: AxiosRequestConfig) => {
     const token = store.commonStore.token;
-
-    if (token) config.headers.Authorization = `Bearer ${token}`;
-
+    if (token) {
+        if (config.headers === undefined) {
+            config.headers = {};
+        }
+        config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
 });
 
@@ -27,7 +30,6 @@ const FlightAgent =
     getAllSave: () => requests.get<Flight[]>('/flight/save'),
     save: (flight: FlightFormValues) => requests.post<String>('/flight/save', flight),
     search: (flight: FlightSearchFormValues) => requests.post<Flight[]>('/flight/search', flight),
-    searchSave: (flight: FlightSearchFormValues) => requests.post<Flight[]>('/flight/save/search', flight),
     deleteSave: (id: number) => requests.del<void>(`/flight/save/${id}`),
 }
 
