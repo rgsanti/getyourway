@@ -5,7 +5,7 @@ import {Airport, Flight, FlightSearchFormValues} from '../models/flight';
 import {toast} from 'react-toastify';
 
 export default class FlightStore {
-    airports: Airport[] = [];
+    airports: Airport[] = airportIATAOptions;
     flights: Flight[] = [];
     savedFlights: Flight[] = [];
     loading = false;
@@ -60,22 +60,6 @@ export default class FlightStore {
 
             this.loadingInitial = false;
         }
-    }
-
-    loadAirports = async () => {
-        const filteredAirports = airportIATAOptions.filter((val, id, array) =>
-            array.findIndex(item => (item.iata === val.iata)) === id)
-            .filter((x)=>x.name!==null && x.size!==null)
-            .sort((a, b) => (a.iata > b.iata ? 1 : -1));
-
-        const filteredAirportsFinal = filteredAirports.map((airport, id) => ({
-            text: airport.iata + ' - ' + airport.name,
-            value: airport.iata
-        }));
-
-        runInAction(() => {
-            this.airports= filteredAirportsFinal;
-        });
     }
 
     saveSelectedFlight = async (id: number) => {

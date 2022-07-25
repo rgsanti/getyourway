@@ -25,11 +25,11 @@ const FlightTableItem = ({ flight }: Props) => {
             <Table.Cell>{flight.destinationLocationCode}</Table.Cell>
             <Table.Cell>{flight.departureDate}</Table.Cell>
             <Table.Cell>{flight.returnDate}</Table.Cell>
-            <Table.Cell>{flight.passengerCount}</Table.Cell>
-            <Table.Cell>{flight.transferCount}</Table.Cell>
+            <Table.Cell>{flight.transferCount - 1}</Table.Cell>
             <Table.Cell>{secondsToHms(flight.time)}</Table.Cell>
+            <Table.Cell>{flight.passengerCount}</Table.Cell>
             <Table.Cell>{flight.price} {flight.currencyCode}</Table.Cell>
-            <Table.Cell>
+            <Table.Cell textAlign={"center"}>
                 <Button
                     name={flight.id}
                     loading={flightStore.loading && target === flight.id.toString()}

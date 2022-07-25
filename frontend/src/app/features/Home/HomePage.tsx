@@ -13,25 +13,20 @@ const HomePage = () => {
     return (
         <Segment inverter textAlign='center' vertical className='homepage'>
             <Container className='container' vertical>
-                <img src={SkyLogo} alt="sky-logo" width={400} />
                 <Header as='h1' inverted>
                     Get Your Way
                 </Header>
+                <img src={SkyLogo} alt="sky-logo" width={300} />
                 {userStore.isLoggedIn ? (
                     <>
                         <Header as='h2' inverted>
                             You are logged as: {userStore.user?.username}
                         </Header>
 
-                        <Button.Group size='huge' widths='3'>
-                            <Button as={Link} to='/flights' inverted>
-                                Search Flights
+                        <Button.Group size='huge' widths='3' vertical>
+                            <Button as={Link} to='/plan-journey' primary>
+                                Plan Your Journey
                             </Button>
-
-                            <Button as={Link} to='/saves' inverted>
-                                Journey Plan
-                            </Button>     
-
                             <Button onClick={() => modalStore.openModal(<LogoutForm />)} inverted>
                                 Logout
                             </Button>

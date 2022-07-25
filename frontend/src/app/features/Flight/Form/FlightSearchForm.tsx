@@ -1,5 +1,4 @@
 import {observer} from 'mobx-react-lite';
-import {Link} from 'react-router-dom';
 import {Button, Grid, Label} from 'semantic-ui-react';
 import {useStore} from '../../../store/store';
 import {ErrorMessage, Form, Formik} from 'formik';
@@ -11,7 +10,6 @@ import CustomTextInput from '../../../common/form/CustomTextInput';
 import CustomSelectInput from '../../../common/form/CustomSelectInput';
 import {AxiosError} from 'axios';
 import {toast} from 'react-toastify';
-import {Icon} from '@iconify/react';
 
 const FlightSearchForm = () => {
     const { flightStore } = useStore();
@@ -88,9 +86,6 @@ const FlightSearchForm = () => {
                     autoComplete='off'
                 >
                     <Grid>
-                        <Button as={Link} to='/' style={{ marginLeft: '1rem' }} centered>
-                            <Icon icon="ion:arrow-back" style={{ fontSize: '24px' }} inline={true}/>
-                        </Button>
                           <Grid.Row columns={3} centered>
 
                             <Grid.Column>

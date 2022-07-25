@@ -12,7 +12,7 @@ import java.util.List;
 public interface FlightRepo extends JpaRepository<Flight, Long>
 {
     @Query(value = "SELECT distinct f.* FROM getyourway.flight f " +
-            "INNER JOIN getyourway.journey j ON f.id = f.journey_id " +
+            "INNER JOIN getyourway.journey j ON j.id = f.journey_id " +
             "INNER JOIN getyourway.user u ON u.id = j.user_id " +
             "WHERE u.id = :userId " +
             "AND f.id = :id",
@@ -20,15 +20,15 @@ public interface FlightRepo extends JpaRepository<Flight, Long>
     Flight findByIdAndUserId(Long id, Long userId);
 
     @Query(value = "SELECT distinct f.* FROM getyourway.flight f " +
-            "INNER JOIN getyourway.journey j ON f.id = f.journey_id " +
+            "INNER JOIN getyourway.journey j ON j.id = f.journey_id " +
             "INNER JOIN getyourway.user u ON u.id = j.user_id " +
             "WHERE u.id = :id " +
-            "ORDER BY f.price ASC",
+            "ORDER BY f.departure_date ASC, f.date_time_created ASC",
             nativeQuery = true)
     List<Flight> findAllByUserId(@Param("id") Long id);
 
     @Query(value = "SELECT distinct f.* FROM getyourway.flight f " +
-            "INNER JOIN getyourway.journey j ON f.id = f.journey_id " +
+            "INNER JOIN getyourway.journey j ON j.id = f.journey_id " +
             "INNER JOIN getyourway.user u ON u.id = j.user_id " +
             "WHERE u.id = :id AND " +
             "UPPER(f.origin_location_code) LIKE UPPER(CONCAT('%',:origin_location_code,'%')) AND " +

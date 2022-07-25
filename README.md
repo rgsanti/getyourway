@@ -79,4 +79,3 @@ The backend Spring config is located within src/main/resources/
 - `currencyCode` was added as part of the search as Amadeus flight API returns the flight costs in the airline’s
   currency -
   this ensures it's converted to GBP (default) or the desired currency.
-- The datepicker needs configured to prevent you choosing a date before today or after a certain date.
