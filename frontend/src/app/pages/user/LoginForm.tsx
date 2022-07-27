@@ -6,7 +6,7 @@ import {useStore} from '../../store/store';
 import * as Yup from 'yup';
 import {Button, Divider, Header, Label} from 'semantic-ui-react';
 import {AxiosError} from 'axios';
-import CustomTextInput from '../../common/form/CustomTextInput';
+import CustomTextInput from '../../components/form/CustomTextInput';
 import {toast} from 'react-toastify';
 
 const LoginForm = () => {

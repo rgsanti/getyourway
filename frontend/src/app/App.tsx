@@ -1,15 +1,17 @@
 import React, {useEffect} from 'react';
-import './styles.css';
-import {useStore} from '../store/store';
+import './styles/common.css';
+import {useStore} from './store/store';
 import {observer} from 'mobx-react-lite';
 import {Route, Switch} from 'react-router-dom';
-import LoadingComponent from './LoadingComponent';
+import LoadingComponent from './components/LoadingComponent';
 import {ToastContainer} from 'react-toastify';
-import ModalContainer from '../common/modals/ModalContainer';
-import HomePage from '../features/Home/HomePage';
-import FlightDashboard from '../features/Flight/Dashboard/FlightDashboard';
-import PrivateRoute from './PrivateRoute';
-import JourneyDashboard from '../features/Flight/Dashboard/JourneyDashboard';
+import ModalContainer from './components/modals/ModalContainer';
+import HomePage from './pages/home/HomePage';
+import FlightDashboard from './pages/flight/Dashboard/FlightDashboard';
+import PrivateRoute from './components/PrivateRoute';
+import JourneyDashboard from './pages/flight/Dashboard/JourneyDashboard';
+import AccountPage from './pages/user/Account';
+import DashboardPage from "./pages/user/Dashboard";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -35,6 +37,8 @@ function App() {
             <Switch>
                 <PrivateRoute path='/flights' component={FlightDashboard} />
                 <PrivateRoute path='/plan-journey' component={JourneyDashboard} />
+                <PrivateRoute path='/account' component={AccountPage} />
+                <PrivateRoute path='/dashboard' component={DashboardPage} />
             </Switch>
         </>
       )} />

@@ -1,6 +1,6 @@
 import {makeAutoObservable, runInAction} from 'mobx';
 import agent from '../api/agent';
-import {airportIATAOptions} from '../common/options/AirportOptions';
+import {airportIATAOptions} from '../util/options/AirportOptions';
 import {Airport, Flight, FlightSearchFormValues} from '../models/flight';
 import {toast} from 'react-toastify';
 

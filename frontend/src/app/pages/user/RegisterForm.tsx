@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import {ErrorMessage, Form, Formik} from 'formik';
 import {AxiosError} from 'axios';
 import {Button, Header, Label} from 'semantic-ui-react';
-import CustomTextInput from '../../common/form/CustomTextInput';
+import CustomTextInput from '../../components/form/CustomTextInput';
 import {toast} from 'react-toastify';
 
 const RegisterForm = () => {

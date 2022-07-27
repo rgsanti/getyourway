@@ -1,0 +1,37 @@
+.footer{
+    border-top: 2px solid #f2f2f2;;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color:#fff;
+    background-color: white;
+
+}
+
+  .footerLinks {
+    text-decoration: none;
+  }
+
+  .footerLinks a:link, a:visited {
+    color: inherit; 
+    text-decoration: none;  
+  }
+
+  .footerLinks a:hover, a:active {
+    color: #f1356d;
+    background-color: white;
+  }
+
+.footercopyright {
+    color: black;
+}
+
+.logo {
+    text-align: right;
+    width: 33%;
+    max-width: 200px;
+    height: 33%;
+    max-height: 200px;
+}
