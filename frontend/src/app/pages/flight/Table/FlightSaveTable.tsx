@@ -27,7 +27,7 @@ const FlightTable = ({ flights }: Props) => {
                     <Table.HeaderCell width={1}>Return</Table.HeaderCell>
                     <Table.HeaderCell width={1}>Connections</Table.HeaderCell>
                     <Table.HeaderCell width={1}>Duration</Table.HeaderCell>
-                    <Table.HeaderCell width={1}>Pax</Table.HeaderCell>
+                    <Table.HeaderCell width={1}>Passengers</Table.HeaderCell>
                     <Table.HeaderCell width={1}>Price</Table.HeaderCell>
                     <Table.HeaderCell width={1}></Table.HeaderCell>
                 </Table.Row>
