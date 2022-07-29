@@ -1,11 +1,13 @@
 import {makeAutoObservable, runInAction} from 'mobx';
 import agent from '../api/agent';
 import {airportIATAOptions} from '../util/options/AirportOptions';
+import {ukAirportIATAOptions} from "../util/options/UKAirportOptions";
 import {Airport, Flight, FlightSearchFormValues} from '../models/flight';
 import {toast} from 'react-toastify';
 
 export default class FlightStore {
     airports: Airport[] = airportIATAOptions;
+    ukAirports: Airport[] = ukAirportIATAOptions;
     flights: Flight[] = [];
     savedFlights: Flight[] = [];
     loading = false;

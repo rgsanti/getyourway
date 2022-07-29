@@ -54,7 +54,8 @@ Things worth noting regarding the schema:
 The `liquibase` plugin is used to create the database tables for us and keep track of any manual changes done to the
 database. Aka
 it's a version control for the database itself.
-Steps to make evolve the schema
+
+Steps to change the schema:
 
 - make the change in your local MySQL db instance then run
   > mvn liquibase:diff
@@ -68,13 +69,13 @@ The backend Spring config is located within src/main/resources/
 - application.properties states which config files (based on profile name) to use. To run locally it would be: common,
   local
 - application-common.yml contains the defaults
-  Example: You want to change the local-profile backend logging level to DEBUG:
+- Example: You want to change the local-profile backend logging level to DEBUG:
   - Within application-local.properties add this line then restart the springboot server:
   > logging.level.org.springframework.web=DEBUG
 
 ### Frontend notes
 
-- agent.ts defines the links to the controller endpoints on the backend - this doesn't deal with journey and trains yet.
+- agent.ts defines the links to the controller endpoints on the backend.
 - Not added postcode as part of the register form, but it is defined in the db schema/backend.
 - `currencyCode` was added as part of the search as Amadeus flight API returns the flight costs in the airline’s
   currency -

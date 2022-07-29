@@ -14,7 +14,7 @@ import {toast} from 'react-toastify';
 
 const FlightSearchForm = () => {
     const { flightStore } = useStore();
-    const { airports, loadingInitial, searchFlights } = flightStore;
+    const { airports, ukAirports, loadingInitial, searchFlights } = flightStore;
 
     let newDate = new Date();
     newDate.setDate(newDate.getDate() + 1 );
@@ -90,7 +90,7 @@ const FlightSearchForm = () => {
                           <Grid.Row columns={3} centered>
 
                             <Grid.Column>
-                                <CustomSelectInput options={airports} placeholder='Origin Location Code' name='originLocationCode' />
+                                <CustomSelectInput options={ukAirports} placeholder='Origin Location Code' name='originLocationCode' />
                                 <ErrorMessage
                                     name='errorOrigin'
                                     render={() => (<Label basic color='red' content={errors.errorOrigin} />)} />
