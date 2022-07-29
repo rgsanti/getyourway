@@ -24,13 +24,13 @@ logging:
       springframework:
         web: INFO
 
-amadeus:
-  air-api:
-    client:
-      id: mO4T2RnMd88XkgdwtvUqhHv3mR3UTmEg
-      secret: GSrAA4rTvhMPCAJg
-      grant_type: client_credentials
-      url: https://test.api.amadeus.com
+client:
+  amadeus:
+    air-api:
+        id: mO4T2RnMd88XkgdwtvUqhHv3mR3UTmEg
+        secret: GSrAA4rTvhMPCAJg
+        grant_type: client_credentials
+        url: https://test.api.amadeus.com
 
 jwt:
   token:

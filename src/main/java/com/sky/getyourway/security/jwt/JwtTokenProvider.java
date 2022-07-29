@@ -2,7 +2,7 @@ package com.sky.getyourway.security.jwt;
 
 import com.sky.getyourway.security.UserDetails;
 import com.sky.getyourway.security.UserDetailsImpl;
-import com.sky.getyourway.service.AirApiService;
+import com.sky.getyourway.client.AmadeusAirApiClient;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -29,11 +29,11 @@ public class JwtTokenProvider
     @Value("${jwt.token.secret}")
     private String secret;
 
-    private final AirApiService airApiService;
+    private final AmadeusAirApiClient amadeusAirApiClient;
     private final UserDetailsImpl userDetailsImpl;
 
-    public JwtTokenProvider(AirApiService airApiService, UserDetailsImpl userDetailsImpl) {
-        this.airApiService = airApiService;
+    public JwtTokenProvider(AmadeusAirApiClient amadeusAirApiClient, UserDetailsImpl userDetailsImpl) {
+        this.amadeusAirApiClient = amadeusAirApiClient;
         this.userDetailsImpl = userDetailsImpl;
     }
 
@@ -51,7 +51,7 @@ public class JwtTokenProvider
         Map<String, Object> claims = new HashMap<>();
         claims.put("sub", user.getUsername());
         claims.put("created", new Date());
-        claims.put("air", airApiService.requestToken());
+        claims.put("air", amadeusAirApiClient.requestToken());
 
         return generateToken(claims);
     }
