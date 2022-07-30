@@ -25,7 +25,7 @@ const requests =
     del: <T>(url: string) => axios.delete<T>(url).then(responseBody)
 }
 
-const FlightAgent =
+const FlightClient =
 {
     getAllSave: () => requests.get<Flight[]>('/flight/save'),
     save: (flight: FlightFormValues) => requests.post<String>('/flight/save', flight),
@@ -33,17 +33,17 @@ const FlightAgent =
     deleteSave: (id: number) => requests.del<void>(`/flight/save/${id}`),
 }
 
-const UserAgent =
+const UserClient =
 {
     current: () => requests.get<User>('/user'),
     login: (user: LoginFormValues) => requests.post<User>('/login', user),
     register: (user: RegisterFormValues) => requests.post<String>('/register', user)
 }
 
-const agent =
+const client =
 {
-    FlightAgent,
-    UserAgent
+    FlightClient: FlightClient,
+    UserClient: UserClient
 }
 
-export default agent;
+export default client;

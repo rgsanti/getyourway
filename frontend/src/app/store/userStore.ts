@@ -1,5 +1,5 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import agent from '../api/agent';
+import client from '../api/client';
 import {LoginFormValues, RegisterFormValues, User} from '../models/user';
 import {store} from './store';
 import {history} from '../..';
@@ -18,7 +18,7 @@ export default class UserStore {
 
     getUser = async () => {
         try {
-            const user = await agent.UserAgent.current();
+            const user = await client.UserClient.current();
             
             runInAction(() => this.user = user);
             store.modalStore.closeModal();
@@ -30,7 +30,7 @@ export default class UserStore {
 
     login = async (login: LoginFormValues) => {
         try {
-            const user = await agent.UserAgent.login(login);
+            const user = await client.UserClient.login(login);
             store.commonStore.setToken(user.jwtToken);
             runInAction(() => this.user = user);
             history.push('/')
@@ -43,7 +43,7 @@ export default class UserStore {
 
     register = async (register: RegisterFormValues) => {
         try {
-            const user = await agent.UserAgent.register(register);
+            const user = await client.UserClient.register(register);
             history.push('/');
             store.modalStore.closeModal();
             toast.success('Registration success! You can now login!');

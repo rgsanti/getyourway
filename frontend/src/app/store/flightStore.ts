@@ -1,5 +1,5 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import agent from '../api/agent';
+import client from '../api/client';
 import {airportIATAOptions} from '../util/options/AirportOptions';
 import {ukAirportIATAOptions} from "../util/options/UKAirportOptions";
 import {Airport, Flight, FlightSearchFormValues} from '../models/flight';
@@ -22,7 +22,7 @@ export default class FlightStore {
         this.loading = true;
 
         try {
-            await agent.FlightAgent.deleteSave(id);
+            await client.FlightClient.deleteSave(id);
 
             runInAction(() => {
                 this.savedFlights = this.savedFlights.filter(flight => flight.id !== id);
@@ -48,7 +48,7 @@ export default class FlightStore {
         this.loadingInitial = true;
 
         try {
-            const flights = await agent.FlightAgent.getAllSave();
+            const flights = await client.FlightClient.getAllSave();
 
             runInAction(() => {
                 this.savedFlights = flights
@@ -69,7 +69,7 @@ export default class FlightStore {
 
         try {
             const selectedFlight = this.flights.find(flight => flight.id === id);
-            await agent.FlightAgent.save(selectedFlight!);
+            await client.FlightClient.save(selectedFlight!);
 
             runInAction(() => {
                 this.flights = this.flights.filter(flight => flight.id !== id);
@@ -89,7 +89,7 @@ export default class FlightStore {
         this.loadingSearch = true;
 
         try {
-            const flights = await agent.FlightAgent.search(search);
+            const flights = await client.FlightClient.search(search);
 
             runInAction(() => {
                 this.flights = flights
