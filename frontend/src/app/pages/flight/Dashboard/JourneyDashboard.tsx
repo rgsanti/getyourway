@@ -19,7 +19,7 @@ const JourneyDashboard = () => {
         <>
             <Segment inverter textAlign="center" vertical className="flight" style={{paddingBottom:0}}>
                 <Container vertical className="container">
-                    <Header as="h1" inverted style={{display: "inline-block", marginRight: 95, fontSize: '36px'}}>
+                    <Header as="h1" inverted style={{textShadow: "1px 1px black", display: "inline-block", marginRight: 95, fontSize: '36px'}}>
                         Plan Your Journey
                     </Header>
                     <Button as={Link} to='/' style={{float: "left"}}>

@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import {Button, Container, Header, Segment} from 'semantic-ui-react';
 import {useStore} from '../../store/store';
 import LoginForm from '../user/LoginForm';
-import LogoutForm from '../user/LogoutForm';
 import RegisterForm from '../user/RegisterForm';
 import SkyLogo from '../../../assets/logo.svg';
 
@@ -27,8 +26,8 @@ const HomePage = () => {
                             <Button as={Link} to='/plan-journey' primary>
                                 Plan Your Journey
                             </Button>
-                            <Button onClick={() => modalStore.openModal(<LogoutForm />)} inverted>
-                                Logout
+                            <Button as={Link} to='/sky-originals' inverted>
+                                Sky Originals
                             </Button>
                         </Button.Group>
                     </>

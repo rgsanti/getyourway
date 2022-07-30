@@ -1,8 +1,8 @@
 package com.sky.getyourway.security.jwt;
 
+import com.sky.getyourway.client.AmadeusAirApiClient;
 import com.sky.getyourway.security.UserDetails;
 import com.sky.getyourway.security.UserDetailsImpl;
-import com.sky.getyourway.client.AmadeusAirApiClient;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

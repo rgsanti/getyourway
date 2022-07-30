@@ -2,6 +2,7 @@ import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {Flight, FlightFormValues, FlightSearchFormValues} from '../models/flight';
 import {LoginFormValues, RegisterFormValues, User} from '../models/user';
 import {store} from '../store/store';
+import {Movie} from "../models/movie";
 
 axios.defaults.baseURL = "http://localhost:8090/api";
 
@@ -40,10 +41,16 @@ const UserClient =
     register: (user: RegisterFormValues) => requests.post<String>('/register', user)
 }
 
+const MovieClient =
+{
+    skyOriginals: () => requests.get<Movie[]>('/movie/sky-originals')
+}
+
 const client =
 {
-    FlightClient: FlightClient,
-    UserClient: UserClient
+    FlightClient,
+    UserClient,
+    MovieClient
 }
 
 export default client;
