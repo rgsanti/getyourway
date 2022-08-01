@@ -1,12 +1,8 @@
 package com.sky.getyourway.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import com.sky.getyourway.entities.Weather;
-import org.apache.tomcat.util.json.JSONParser;
 import org.apache.tomcat.util.json.ParseException;
-import org.json.JSONString;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +26,10 @@ public class WeatherController {
         String iconLink = "https://openweathermap.org/img/wn/"+icon+"@2x.png";
 
         Weather w1 = new Weather(description, iconLink);
+        System.out.println(jo);
+        System.out.println(ja);
+        System.out.println(description);
+        System.out.println(icon);
 
         return w1.toString();
     }

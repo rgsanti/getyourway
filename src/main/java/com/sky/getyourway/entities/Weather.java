@@ -8,9 +8,8 @@ public class Weather {
     private String description;
     private String icon;
 
-    public Weather() {
-    }
-
-    public Weather(String description, String icon) {
+    public Weather(String description, String iconLink) {
+        this.icon = iconLink;
+        this.description = description;
     }
 }
