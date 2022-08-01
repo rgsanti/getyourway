@@ -7,6 +7,7 @@ import FlightTable from '../Table/FlightTable';
 import {Link} from "react-router-dom";
 import {Icon} from "@iconify/react";
 import CarouselSlider from '../../home/CarouselSlider';
+import MoviePage from '../../MoviePage';
 
 const FlightDashboard = () => {
     const {flightStore} = useStore();
@@ -38,6 +39,7 @@ const FlightDashboard = () => {
                 </Container>
 
             </Segment>
+            <MoviePage />
         </>
     );
 }
