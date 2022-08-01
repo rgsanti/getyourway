@@ -6,6 +6,7 @@ import FlightSearchForm from '../Form/FlightSearchForm';
 import FlightTable from '../Table/FlightTable';
 import {Link} from "react-router-dom";
 import {Icon} from "@iconify/react";
+import CarouselSlider from '../../home/CarouselSlider';
 
 const FlightDashboard = () => {
     const {flightStore} = useStore();
@@ -17,6 +18,7 @@ const FlightDashboard = () => {
 
     return (
         <>
+        <CarouselSlider />
             <Segment inverter textAlign="center" vertical className="flight" style={{paddingBottom:0}}>
                 <Container vertical className="container">
                     <Header as="h1" inverted style={{textShadow: "1px 1px black", display: "inline-block", marginRight: 100, fontSize: '36px'}}>

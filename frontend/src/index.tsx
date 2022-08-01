@@ -11,6 +11,7 @@ import {store, StoreContext} from './app/store/store';
 import {Router} from 'react-router';
 import Navbar from "./app/components/layout/Navbar";
 import Footer from "./app/components/layout/Footer";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const history = createBrowserHistory();
 
