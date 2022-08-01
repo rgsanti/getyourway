@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class WeatherController {
     @GetMapping(value="/weather")
     private String getWeather() throws JsonProcessingException, ParseException {
-        String uri = "https://api.openweathermap.org/data/2.5/weather?q=London&appid=ece83a11b6898ea50ca69822f63cd546";        RestTemplate rt = new RestTemplate();
+        String uri = "https://api.openweathermap.org/data/2.5/weather?q=London&appid={apikey}}";        RestTemplate rt = new RestTemplate();
         String jsonString = rt.getForObject(uri, String.class);
         JSONObject jo = new JSONObject(jsonString);
 
