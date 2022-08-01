@@ -14,14 +14,14 @@ import {toast} from 'react-toastify';
 import {history} from '../../../../index';
 
 const FlightSearchForm = () => {
-    const { flightStore } = useStore();
+    const { flightStore, userStore } = useStore();
     const { airports, ukAirports, loadingInitial, searchFlights } = flightStore;
 
     let newDate = new Date();
     newDate.setDate(newDate.getDate() + 1 );
 
     const initialValues = {
-        'originLocationCode': '',
+        'originLocationCode': userStore.user?.homeAirportCode,
         'destinationLocationCode': '',
         'departureDate': newDate,
         'returnDate': null,

@@ -1,12 +1,12 @@
 package com.sky.getyourway.service.impl;
 
+import com.sky.getyourway.client.AmadeusAirApiClient;
 import com.sky.getyourway.dto.flight.FlightDTO;
 import com.sky.getyourway.dto.flight.FlightSearchDTO;
 import com.sky.getyourway.entities.Flight;
 import com.sky.getyourway.entities.Journey;
 import com.sky.getyourway.persistence.FlightRepo;
 import com.sky.getyourway.persistence.JourneyRepo;
-import com.sky.getyourway.client.AmadeusAirApiClient;
 import com.sky.getyourway.service.FlightService;
 import com.sky.getyourway.util.converter.ConverterUtil;
 import com.sky.getyourway.util.exception.UnauthorizedRequestException;
