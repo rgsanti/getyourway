@@ -7,6 +7,7 @@ import SkyLogo from "../../../../assets/logo.svg";
 import {Link} from "react-router-dom";
 import {Icon} from "@iconify/react";
 import WeatherPanel from "../../../components/weather/WeatherPanel";
+import FlightPanel from "../../../components/flight/FlightPanel";
 
 const JourneyDashboard = () => {
     const {flightStore} = useStore();
@@ -27,10 +28,10 @@ const JourneyDashboard = () => {
                     <Grid divided='vertically'>
                         <Grid.Row columns={2}>
                             <Grid.Column key={1}>
-                                <WeatherPanel icon="http://openweathermap.org/img/wn/10d@2x.png" description="Description" temp="30C"/>
+                                <WeatherPanel/>
                             </Grid.Column>
                             <Grid.Column key={2}>
-                                <WeatherPanel icon="http://openweathermap.org/img/wn/10d@2x.png" description="Description" temp="30C"/>
+                                <FlightPanel />
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
