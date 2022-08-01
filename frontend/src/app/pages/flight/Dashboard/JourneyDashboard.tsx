@@ -6,6 +6,7 @@ import FlightSaveTable from '../Table/FlightSaveTable';
 import SkyLogo from "../../../../assets/logo.svg";
 import {Link} from "react-router-dom";
 import {Icon} from "@iconify/react";
+import WeatherPanel from "../../../components/weather/WeatherPanel";
 
 const JourneyDashboard = () => {
     const {flightStore} = useStore();
@@ -19,32 +20,27 @@ const JourneyDashboard = () => {
         <>
             <Segment inverter textAlign="center" vertical className="flight" style={{paddingBottom:0}}>
                 <Container vertical className="container">
-                    <Header as="h1" inverted style={{textShadow: "1px 1px black", display: "inline-block", marginRight: 95, fontSize: '36px'}}>
+                    <Header as="h1" inverted style={{textShadow: "1px 1px black", display: "inline-block", fontSize: '36px'}}>
                         Plan Your Journey
                     </Header>
-                    <Button as={Link} to='/' style={{float: "left"}}>
-                        <Icon icon="ion:arrow-back" style={{fontSize: '19px'}} inline={true}/>Home
-                    </Button>
 
-                    <Grid.Row columns={1}>
-                        <img src={SkyLogo} alt="sky-logo" width={300}/>
-
-                        <Grid.Column centered>
-                            <Button.Group size='huge' widths='3' style={{paddingTop:6}}>
-                                <Button as={Link} to='/flights' primary
-                                >Add Flights</Button>
-                            </Button.Group>
-                        </Grid.Column>
-                    </Grid.Row>
+                    <Grid divided='vertically'>
+                        <Grid.Row columns={2}>
+                            <Grid.Column key={1}>
+                                <WeatherPanel icon="http://openweathermap.org/img/wn/10d@2x.png" description="Description" temp="30C"/>
+                            </Grid.Column>
+                            <Grid.Column key={2}>
+                                <WeatherPanel icon="http://openweathermap.org/img/wn/10d@2x.png" description="Description" temp="30C"/>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
                 </Container>
 
             </Segment>
             <Segment inverter textAlign="center" vertical className="flight" style={{paddingTop:0}}>
-
                 <Container vertical className="container">
                     <FlightSaveTable flights={savedFlights}/>
                 </Container>
-
             </Segment>
         </>
     );
