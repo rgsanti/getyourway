@@ -11,6 +11,7 @@ import CustomTextInput from '../../../components/form/CustomTextInput';
 import CustomSelectInput from '../../../components/form/CustomSelectInput';
 import {AxiosError} from 'axios';
 import {toast} from 'react-toastify';
+import {history} from '../../../../index';
 
 const FlightSearchForm = () => {
     const { flightStore } = useStore();
@@ -57,28 +58,29 @@ const FlightSearchForm = () => {
             initialValues={initialValues}
             validationSchema={Yup.object(validationSchema)}
             onSubmit={(values, { setErrors }) => searchFlights(values)
-                .catch((error: AxiosError) => {
-                    const { data, status } = error.response!;
+                    .catch((error: AxiosError) => {
+                            const {data, status} = error.response!;
 
-                    switch (status) {
-                        case 400:
-                            if (data.originLocationCode) setErrors({ errorOrigin: data.originLocationCode });
-                            if (data.destinationLocationCode) setErrors({ errorDestination: data.destinationLocationCode });
-                            if (data.departureDate) setErrors({ errorDeparture: data.departureDate });
-                            if (data.departureDate) setErrors({ errorReturn: data.returnDate });
-                            if (data.validReturnDate) setErrors({ errorReturn: data.validReturnDate });
-                            if (data.passengerCount) setErrors({ errorPassenger: data.passengerCount });
-                            if (data.currencyCode) setErrors({ errorCurrency: data.currencyCode });
-                            break;
-                        case 403:
-                            toast.error("Unauthorized access!");
-                            break;
-                        case 500:
-                            console.log(data);
-                            toast.error('Internal server error! See console log!')
-                            break;
-                    }
-                })}
+                            switch (status) {
+                                case 400:
+                                    if (data.originLocationCode) setErrors({errorOrigin: data.originLocationCode});
+                                    if (data.destinationLocationCode) setErrors({errorDestination: data.destinationLocationCode});
+                                    if (data.departureDate) setErrors({errorDeparture: data.departureDate});
+                                    if (data.departureDate) setErrors({errorReturn: data.returnDate});
+                                    if (data.validReturnDate) setErrors({errorReturn: data.validReturnDate});
+                                    if (data.passengerCount) setErrors({errorPassenger: data.passengerCount});
+                                    if (data.currencyCode) setErrors({errorCurrency: data.currencyCode});
+                                    break;
+                                case 403:
+                                    toast.error("Unauthorized access!");
+                                    break;
+                                case 500:
+                                    console.log(data);
+                                    toast.error('Internal server error! See console log!')
+                                    break;
+                            }
+                }).then(()=>history.push('/flight-results'))
+        }
         >
             {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (
                 <Form
@@ -140,6 +142,7 @@ const FlightSearchForm = () => {
                         <Grid.Row columns={1}>
 
                             <Grid.Column centered>
+
 
                                 <Button.Group size='huge' widths='3'>
                                     <Button
