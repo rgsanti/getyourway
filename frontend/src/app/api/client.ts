@@ -2,6 +2,7 @@ import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {Flight, FlightFormValues, FlightSearchFormValues} from '../models/flight';
 import {LoginFormValues, RegisterFormValues, User} from '../models/user';
 import {store} from '../store/store';
+import {Movie} from "../models/movie";
 
 axios.defaults.baseURL = "http://localhost:8090/api";
 
@@ -25,7 +26,7 @@ const requests =
     del: <T>(url: string) => axios.delete<T>(url).then(responseBody)
 }
 
-const FlightAgent =
+const FlightClient =
 {
     getAllSave: () => requests.get<Flight[]>('/flight/save'),
     save: (flight: FlightFormValues) => requests.post<String>('/flight/save', flight),
@@ -33,17 +34,23 @@ const FlightAgent =
     deleteSave: (id: number) => requests.del<void>(`/flight/save/${id}`),
 }
 
-const UserAgent =
+const UserClient =
 {
     current: () => requests.get<User>('/user'),
     login: (user: LoginFormValues) => requests.post<User>('/login', user),
     register: (user: RegisterFormValues) => requests.post<String>('/register', user)
 }
 
-const agent =
+const MovieClient =
 {
-    FlightAgent,
-    UserAgent
+    skyOriginals: () => requests.get<Movie[]>('/movie/sky-originals')
 }
 
-export default agent;
+const client =
+{
+    FlightClient,
+    UserClient,
+    MovieClient
+}
+
+export default client;

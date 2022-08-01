@@ -1,0 +1,138 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.movies__container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 95%;
+    padding-top: 30px;
+    justify-content: space-around;
+    color: #ddd;
+}
+
+.movie {
+    margin: 5px;
+    padding: 20px 5px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-blend-mode: color;
+    max-width: 270px;
+    height: 400.1px;
+    box-shadow: 10px 10px 10px #111;
+    transition: background-color 0.25s linear;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    background-size: cover;
+}
+.movie:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.movie:hover .movie__title,
+.movie:hover .movie__description,
+.movie:hover .movie__infos div,
+.movie:hover .movie__rating,
+.movie:hover .movie__imdb-button {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.movie__title {
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.24s ease-in 0, opacity 0.3s linear;
+    text-transform: uppercase;
+}
+
+.movie__description {
+    max-height: 200px;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.24s ease-in 0.05s, opacity 0.3s linear;
+}
+
+.movie__infos {
+    display: grid;
+    grid-gap: 10px 0;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+}
+
+.info__head {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.movie__duration {
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.24s ease-in 0.15s, opacity 0.3s linear;
+}
+
+.movie__director {
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.24s ease-in 0.2s, opacity 0.3s linear;
+}
+
+.movie__year {
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.24s ease-in 0.25s, opacity 0.3s linear;
+}
+
+.movie__directors {
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.24s ease-in 0.3s, opacity 0.3s linear;
+    font-size: 0.9em;
+}
+
+.movie__filming {
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.24s ease-in 0.2s, opacity 0.3s linear;
+    font-size: 0.9em;
+}
+
+.movie__imdb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-self: flex-end;
+    padding: 0 10px;
+}
+
+.movie__rating {
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.24s ease-in 0.35s, opacity 0.3s linear;
+}
+
+.movie__imdb-button {
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #EBBA33;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-family: "Oswald", sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.24s ease-in 0.4s, opacity 0.3s linear;
+}

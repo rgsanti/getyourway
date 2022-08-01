@@ -6,7 +6,7 @@ import com.sky.getyourway.entities.Flight;
 import com.sky.getyourway.entities.Journey;
 import com.sky.getyourway.persistence.FlightRepo;
 import com.sky.getyourway.persistence.JourneyRepo;
-import com.sky.getyourway.service.AirApiService;
+import com.sky.getyourway.client.AmadeusAirApiClient;
 import com.sky.getyourway.service.FlightService;
 import com.sky.getyourway.util.converter.ConverterUtil;
 import com.sky.getyourway.util.exception.UnauthorizedRequestException;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class FlightServiceImpl implements FlightService
 {
-    private final AirApiService airApiService;
+    private final AmadeusAirApiClient amadeusAirApiClient;
 
     private final FlightRepo flightRepository;
     private final JourneyRepo journeyRepo;
@@ -42,7 +42,7 @@ public class FlightServiceImpl implements FlightService
     @Override
     public List<FlightDTO> search(String jwt, FlightSearchDTO searchDTO)
     {
-        return airApiService.requestFlightOffersSearch(jwt, searchDTO);
+        return amadeusAirApiClient.requestFlightOffersSearch(jwt, searchDTO);
     }
 
     @Override

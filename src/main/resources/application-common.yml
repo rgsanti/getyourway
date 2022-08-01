@@ -24,13 +24,17 @@ logging:
       springframework:
         web: INFO
 
-amadeus:
-  air-api:
-    client:
-      id: mO4T2RnMd88XkgdwtvUqhHv3mR3UTmEg
-      secret: GSrAA4rTvhMPCAJg
-      grant_type: client_credentials
-      url: https://test.api.amadeus.com
+client:
+  movie:
+    api:
+      token: fd255b5f-aed1-4012-b352-58dddb0131e9
+      url: https://www.myapifilms.com/imdb/idIMDB?format=json&filmingLocations=1
+  amadeus:
+    air-api:
+        id: mO4T2RnMd88XkgdwtvUqhHv3mR3UTmEg
+        secret: GSrAA4rTvhMPCAJg
+        grant_type: client_credentials
+        url: https://test.api.amadeus.com
 
 jwt:
   token:
@@ -40,3 +44,6 @@ jwt:
 server:
   port: 8090
 
+movies:
+  sky-originals:
+    imdb-codes-list: tt5360952,tt12731980,tt5144174,tt6476140,tt7390588,tt10059518,tt10065694,tt5114840,tt5461944

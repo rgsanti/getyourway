@@ -1,4 +1,4 @@
-package com.sky.getyourway.service;
+package com.sky.getyourway.client;
 
 import com.sky.getyourway.dto.flight.FlightDTO;
 import com.sky.getyourway.dto.flight.FlightSearchDTO;
@@ -27,24 +27,24 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class AirApiService
+public class AmadeusAirApiClient
 {
-    @Value("${amadeus.air-api.client.id}")
+    @Value("${client.amadeus.air-api.id}")
     private String clientId;
 
-    @Value("${amadeus.air-api.client.secret}")
+    @Value("${client.amadeus.air-api.secret}")
     private String clientSecret;
 
-    @Value("${amadeus.air-api.client.grant_type}")
+    @Value("${client.amadeus.air-api.grant_type}")
     private String grantType;
 
-    @Value("${amadeus.air-api.client.url}")
+    @Value("${client.amadeus.air-api.url}")
     private String url;
 
     private final ModelMapper modelMapper;
     private final WebClient.Builder webClientBuilder;
 
-    public AirApiService(ModelMapper modelMapper, WebClient.Builder webClientBuilder) {
+    public AmadeusAirApiClient(ModelMapper modelMapper, WebClient.Builder webClientBuilder) {
         this.modelMapper = modelMapper;
         this.webClientBuilder = webClientBuilder;
     }
