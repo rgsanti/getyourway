@@ -5,16 +5,17 @@ import {Icon} from "@iconify/react";
 import {observer} from "mobx-react-lite";
 import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api'
 import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
-import { Box, Flex, HStack, Input, ButtonGroup, Button, IconButton } from '@chakra-ui/react'
+import { Box, Flex, HStack, Input, ButtonGroup, Button, IconButton, Text } from '@chakra-ui/react'
 
 const center = { lat: 51.5074, lng: 0.1272}
 
 const MapComponent = () => {
 
+    // const dotenv = require('dotenv');
     const google = window.google;
 
     const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: "AIzaSyAmnK9Csd_sj0R-IntbzzzvRytWky90zRo",
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries: ['places']
     })
 
@@ -54,13 +55,8 @@ const MapComponent = () => {
     }
 
     return (
-        // <GoogleMap center={center} zoom={15} mapContainerStyle={{width: '100%', height: '100%'}}>
-
-        // </GoogleMap>
-
         <Flex position='relative' flexDirection='column' alignItems='center' h='100vh' w='100vw'>
             <Box position='absolute' left={50} top={50} h='100%' w='100%'>
-            {/* <Box h='100%' w='100%'> */}
                 <GoogleMap
                 center={center}
                 zoom={15}
@@ -98,6 +94,9 @@ const MapComponent = () => {
                     <IconButton aria-label='center back' onClick={clearRoute}/>
                 </ButtonGroup>
             </HStack>
+
+            {/* <Text>Distance: {distance} </Text>
+            <Text>Duration: {duration} </Text> */}
 
         </Flex>
     )
