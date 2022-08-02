@@ -2,7 +2,7 @@
 
 ## First time setup
 
-1. ensure mysql server is running.
+1. ensure mysql server is running!
 2. run the commands within src/main/resources/db/schema.sql inside your local mysql database.
    > mysql -u root < src/main/resources/db/schema.sql
 3. install the maven dependencies for the spring-boot project
