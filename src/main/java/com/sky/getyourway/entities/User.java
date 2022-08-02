@@ -51,6 +51,9 @@ public class User {
     @Size(min = 5, max = 8)
     private String postcode;
 
+    @Size(min = 3, max = 3)
+    private String homeAirportCode;
+
     @Column(name = "username", unique = true, nullable = false)
     private String username;
 

@@ -30,8 +30,9 @@ export default class UserStore {
 
     login = async (login: LoginFormValues) => {
         try {
-            const user = await client.UserClient.login(login);
+            let user = await client.UserClient.login(login);
             store.commonStore.setToken(user.jwtToken);
+            user = await client.UserClient.current();
             runInAction(() => this.user = user);
             history.push('/')
             store.modalStore.closeModal();
