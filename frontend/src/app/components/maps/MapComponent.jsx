@@ -1,17 +1,11 @@
 import React, {useEffect, useState, useRef} from 'react';
-// import {Button, Container, Header, Segment} from 'semantic-ui-react';
-import {Link} from "react-router-dom";
-import {Icon} from "@iconify/react";
-import {observer} from "mobx-react-lite";
 import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api'
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 import { Box, Flex, HStack, Input, ButtonGroup, Button, IconButton, Text, Center } from '@chakra-ui/react'
 
 const center = { lat: 51.5074, lng: 0.1272}
 
 const MapComponent = () => {
 
-    // const dotenv = require('dotenv');
     const google = window.google;
 
     const { isLoaded } = useJsApiLoader({
