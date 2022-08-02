@@ -15,7 +15,6 @@ import DashboardPage from "./pages/user/Dashboard";
 import MoviePage from "./pages/MoviePage";
 import FlightSearchResultsPage from "./pages/flight/Dashboard/FlightSearchResultsPage";
 import MapComponent from './components/maps/MapComponent';
-import MapPage from './pages/maps/maps/MapPage';
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -45,7 +44,6 @@ function App() {
                 <PrivateRoute path='/account' component={AccountPage} />
                 <PrivateRoute path='/dashboard' component={DashboardPage} />
                 <PrivateRoute path='/sky-originals' component={MoviePage} />
-                <PrivateRoute path='/google-maps' component={MapPage} />
             </Switch>
         </>
       )} />
