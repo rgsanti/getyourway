@@ -58,3 +58,8 @@ body {
   font-size: 2.2em;
   font-weight: bold;
 }
+
+.map {
+  display: flex;
+  align-items: center;
+}
