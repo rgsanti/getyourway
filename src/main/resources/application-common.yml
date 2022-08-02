@@ -29,6 +29,10 @@ client:
     api:
       token: fd255b5f-aed1-4012-b352-58dddb0131e9
       url: https://www.myapifilms.com/imdb/idIMDB?format=json&filmingLocations=1
+  weather:
+    api:
+      token: ece83a11b6898ea50ca69822f63cd546
+      url: https://api.openweathermap.org/data/2.5/weather
   amadeus:
     air-api:
         id: mO4T2RnMd88XkgdwtvUqhHv3mR3UTmEg
