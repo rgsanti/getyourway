@@ -8,8 +8,14 @@ public class Weather {
     private String description;
     private String icon;
 
-    public Weather(String description, String iconLink) {
+    private double temp;
+
+    private String date;
+
+    public Weather(String description, String iconLink, String date, double temp) {
         this.icon = iconLink;
         this.description = description;
+        this.date = date;
+        this.temp = temp;
     }
 }

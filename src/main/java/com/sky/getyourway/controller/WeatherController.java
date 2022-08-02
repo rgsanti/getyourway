@@ -3,6 +3,7 @@ package com.sky.getyourway.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sky.getyourway.entities.Weather;
 import org.apache.tomcat.util.json.ParseException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -30,15 +33,28 @@ public class WeatherController {
         String jsonString = rt.getForObject(uri, String.class);
         JSONObject jo = new JSONObject(jsonString);
 
-        JSONObject ja = (JSONObject) jo.getJSONArray("weather").get(0);
+        JSONArray days = jo.getJSONArray("list");
+        List<Weather> weatherList = new ArrayList<Weather>();
 
-        String description = ja.getString("description");
-        String icon = ja.getString("icon");
-        String iconLink = "https://openweathermap.org/img/wn/"+icon+"@2x.png";
+        for (int i = 0; i < days.length(); i +=8 ) {
+            JSONObject day = (JSONObject) days.get(i);
+            JSONObject weather = (JSONObject) day.getJSONArray("weather").get(0);
 
-        Weather w1 = new Weather(description, iconLink);
+            String description = weather.getString("description");
+            String icon = weather.getString("icon");
+            String iconLink = "https://openweathermap.org/img/wn/"+icon+"@2x.png";
+            String date = day.getString("dt_txt");
 
-        return w1.toString();
+
+            JSONObject main = day.getJSONObject("main");
+            System.out.println(main);
+            double temp = main.getInt("temp_max") - 273.00;
+            Weather w1 = new Weather(description, iconLink, date, temp);
+            System.out.println(w1);
+            weatherList.add(w1);
+        }
+
+        return weatherList.toString();
     }
 
     public URI buildUri(String location)
