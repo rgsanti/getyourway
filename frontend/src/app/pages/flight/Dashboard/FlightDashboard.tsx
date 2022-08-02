@@ -29,8 +29,8 @@ const FlightDashboard = () => {
                     </Button>
                     <FlightSearchForm/>
                 </Container>
-
             </Segment>
+            <MoviePage />
         </>
     );
 }
