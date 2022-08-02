@@ -52,8 +52,8 @@ const RegisterForm = () => {
         phonenumber:
             Yup.string()
                 .required('Phone number is required!')
-                .min(10, 'Phone number must be at least 11 digits!')
-                .max(20, 'Phone number is too long!')
+                .min(11, 'Phone number must be 11 digits!')
+                .max(11, 'Phone number must be 11 digits!')
                 .matches(/^[0-9]+$/, 'Phone number accepts only digits!'),
         password:
             Yup.string()
@@ -137,7 +137,7 @@ const RegisterForm = () => {
                     />
 
                     <CustomTextInput
-                        name='phonenumber'
+                        name='phoneNumber'
                         placeholder='Phone number'
                     />
 
