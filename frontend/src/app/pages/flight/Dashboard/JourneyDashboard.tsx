@@ -8,6 +8,8 @@ import {Link} from "react-router-dom";
 import {Icon} from "@iconify/react";
 import WeatherPanel from "../../../components/weather/WeatherPanel";
 import FlightPanel from "../../../components/flight/FlightPanel";
+import DirectionsForm from '../../../components/directions/DirectionsForm';
+import Directions from '../../../components/directions/Directions';
 
 const JourneyDashboard = () => {
     const {flightStore} = useStore();
@@ -32,6 +34,16 @@ const JourneyDashboard = () => {
                             </Grid.Column>
                             <Grid.Column key={2}>
                                 <FlightPanel />
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row columns={2}>
+                            <Grid.Column key={1}>
+                                {/* directions form and steps component */}
+                                <DirectionsForm/>
+                                <Directions/>
+                            </Grid.Column>
+                            <Grid.Column key={2}>
+                                {/* maps component */}
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
