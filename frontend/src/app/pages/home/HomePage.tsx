@@ -10,8 +10,8 @@ const HomePage = () => {
     const { modalStore, userStore } = useStore();
 
     return (
-        <Segment inverter textAlign='center' vertical className='homepage'>
-            <Container className='container' vertical>
+        <Segment textAlign='center' vertical className='homepage'>
+            <Container className='container' vertical={+true}>
                 <Header as='h1' inverted>
                     Get Your Way
                 </Header>
@@ -23,11 +23,11 @@ const HomePage = () => {
                         </Header>
 
                         <Button.Group size='huge' widths='3' vertical>
-                            <Button as={Link} to='/plan-journey' primary>
-                                Plan Your Journey
+                            <Button as={Link} to='/flights' primary>
+                                Start
                             </Button>
-                            <Button as={Link} to='/sky-originals' inverted>
-                                Sky Originals
+                            <Button as={Link} to='/plan-journey'>
+                                Your Upcoming Journeys
                             </Button>
                         </Button.Group>
                     </>

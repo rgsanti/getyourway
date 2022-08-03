@@ -4,6 +4,7 @@ import FlightStore from './flightStore';
 import ModalStore from './modalStore';
 import UserStore from './userStore';
 import MovieStore from "./movieStore";
+import WeatherStore from "./weatherStore";
 
 interface Store {
     commonStore: CommonStore;
@@ -11,6 +12,7 @@ interface Store {
     modalStore: ModalStore,
     userStore: UserStore;
     movieStore: MovieStore;
+    weatherStore: WeatherStore;
 }
 
 export const store: Store =
@@ -19,7 +21,8 @@ export const store: Store =
     flightStore: new FlightStore(),
     modalStore: new ModalStore(),
     userStore: new UserStore(),
-    movieStore: new MovieStore()
+    movieStore: new MovieStore(),
+    weatherStore: new WeatherStore()
 }
 
 export const StoreContext = createContext(store);

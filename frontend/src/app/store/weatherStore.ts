@@ -1,32 +1,34 @@
 import {makeAutoObservable, runInAction} from 'mobx';
 import client from '../api/client';
+import {AirportDetail} from '../models/flight';
 import {toast} from 'react-toastify';
-import {Movie} from "../models/movie";
 
-export default class MovieStore {
-    skyOriginals: Movie[] = [];
+export default class WeatherStore {
+    // @ts-ignore
+    weather:object =null;
     loading = false;
     loadingInitial = false;
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this);
     }
 
-    getSkyOriginals = async () => {
+    getForecast = async (ar: AirportDetail ) => {
         this.loadingInitial = true;
 
         try {
-            const skyOriginals = await client.MovieClient.skyOriginals();
+            const weather = await client.WeatherClient.getForecast(ar);
 
             runInAction(() => {
-                this.skyOriginals = skyOriginals
+                this.weather = weather
             });
+
 
             this.loadingInitial = false;
         }
-        catch(error) {
+         catch(error) {
             // @ts-ignore
-            const {data, status} = error.response!;
+             const {data, status} = error.response!;
 
             switch (status) {
                 case 403:

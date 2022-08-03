@@ -21,7 +21,7 @@ const Navbar = () => {
             <div className='mainlinks'>
                 <Link to='/plan-journey' style={{
                     margin: '5px',
-                }}>Plan Your Journey</Link>
+                }}>Your Upcoming Journeys</Link>
                  <Link to='/' style={{
                     margin: '5px',
                     borderLeftStyle: 'solid',
@@ -34,7 +34,7 @@ const Navbar = () => {
                 }}>My Account</Link>
                 </div>
             <div className='loginlink'>
-                 <Link onClick={() => modalStore.openModal(<LogoutForm />)} style={{
+                 <Link to='#' onClick={() => modalStore.openModal(<LogoutForm />)} style={{
                     border: '2px solid #08d2fb',
                     borderRadius: '8px',
                     margin: '4px',

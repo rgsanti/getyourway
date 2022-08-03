@@ -59,10 +59,20 @@ export default class FlightStore {
 
             this.loadingInitial = false;
         }
-        catch (error) {
-            console.error(error);
-            toast.error("Error has occurred. See console log!");
+        catch(error) {
+            // @ts-ignore
+            const {data, status} = error.response!;
 
+            switch (status) {
+                case 403:
+                    toast.error("Unauthorized access!");
+                    window.location.reload();
+                    break;
+                case 500:
+                    console.log(data);
+                    toast.error('Internal server error! See console log!')
+                    break;
+            }
             this.loadingInitial = false;
         }
     }

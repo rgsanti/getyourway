@@ -32,7 +32,7 @@ client:
   weather:
     api:
       token: ece83a11b6898ea50ca69822f63cd546
-      url: https://api.openweathermap.org/data/2.5/weather
+      url: https://api.openweathermap.org/data/2.5/forecast
   amadeus:
     air-api:
         id: mO4T2RnMd88XkgdwtvUqhHv3mR3UTmEg
