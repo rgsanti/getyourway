@@ -41,29 +41,38 @@ const JourneyDashboard = () => {
                     <p></p>
                     <Grid divided='vertically'>
                         <Grid.Row columns={2}>
-                            <Grid.Column key={1} centered>
+                            {/* <Grid.Column key={1} centered> */}
                                     {airportDetail.iata !== undefined ? (
                                         <>
-                                            <p style={{marginTop: '3em', marginBottom: '1em', textAlign: 'center'}}>
+                                            <Grid.Column key={1} centered>
+                                            <p style={{marginTop: '1em', marginBottom: '1em', textAlign: 'center', fontSize: '150%'}}>
                                                 <text style={{fontWeight: 'bold'}}>Location:</text> {airportDetail.city} | 
                                                 <text style={{fontWeight: 'bold'}}> Timezone:</text> {airportDetail.tz}
                                             </p>
                                             <WeatherPanel airportDetail={airportDetail}/>
+                                            </Grid.Column>
+                                            <Grid.Column key={2}>
+                                                <p style={{fontWeight: 'bold', marginTop: '1em', marginBottom: '1em', textAlign: 'center', fontSize: '150%'}}>
+                                                    Your Flight Details
+                                                </p>
+                                                <FlightPanel airportDetail={airportDetail} date={savedFlights[0].departureDate} time={savedFlights[0].time}/>
+                                            </Grid.Column>
                                         </>) : (<>
                                         <h5 style={{
-                                            marginLeft: '25em',
+                                            marginTop: '1em',
+                                            marginLeft: '1em',
                                             color: "grey",
                                             textAlign: "center",
                                             fontSize: '20px'
-                                        }}>No Upcoming journeys</h5>
+                                        }}>No Upcoming Journeys</h5>
                                     </>)}
-                            </Grid.Column>
-                            <Grid.Column key={2}>
+                            {/* </Grid.Column> */}
+                            {/* <Grid.Column key={2}>
                                             <p style={{fontWeight: 'bold', marginTop: '3em', marginBottom: '1em', textAlign: 'center'}}>
                                                 Your Flight Details
                                             </p>
                                 <FlightPanel airportDetail={airportDetail} />
-                            </Grid.Column>
+                            </Grid.Column> */}
                         </Grid.Row>
                     </Grid>
                 </Container>
@@ -72,6 +81,10 @@ const JourneyDashboard = () => {
 
             <Segment inverter={+true} textAlign="center" vertical className="flight" style={{paddingTop: 0}}>
                 <Container vertical={+true} className="container">
+                    <Header as="h1" inverted
+                            style={{textShadow: "1px 1px black", display: "inline-block", fontSize: '36px'}}>
+                        Saved Flights
+                    </Header>
                     <FlightSaveTable flights={savedFlights}/>
                 </Container>
             </Segment>

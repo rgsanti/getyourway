@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
 import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api'
-import { Box, Flex, HStack, Input, ButtonGroup, Button, Text, ChakraProvider, theme } from '@chakra-ui/react'
+import { Box, Flex, HStack, Input, ButtonGroup, Button, Text, ChakraProvider, theme, Center } from '@chakra-ui/react'
 
 const center = { lat: 51.5074, lng: 0.1272}
 
@@ -41,6 +41,7 @@ const MapComponent = () => {
     }
 
     return (
+        <Center>
         <Flex position='relative' flexDirection='column' alignItems='center' h='100vh' w='100vw'>
 
             <ChakraProvider theme={theme}>
@@ -70,11 +71,11 @@ const MapComponent = () => {
                 </Text>
             </HStack>
 
-            <Box position='relative' left='25%' top='2%' h='100%' w='100%'>
+            <Box position='relative' left='17%' top='2%' h='100%' w='100%'>
                 <GoogleMap
                 center={center}
                 zoom={15}
-                mapContainerStyle={{ width: '50%', height: '95%' }}
+                mapContainerStyle={{ width: '70%', height: '95%' }}
                 options={{
                     zoomControl: false,
                     streetViewControl: false,
@@ -91,6 +92,7 @@ const MapComponent = () => {
             </ChakraProvider>
 
         </Flex>
+        </Center>
     )
 
 }
