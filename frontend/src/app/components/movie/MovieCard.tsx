@@ -18,19 +18,20 @@ const MovieInfo = ({name,value}) => (
 
 
 const MovieCard = ({infos}) => {
-    const {flightStore, userStore} = useStore();
+    const {flightStore, modalStore, userStore} = useStore();
     const {locationToAirportMap, searchFlights} = flightStore;
     const directors = infos.directors.map(director => (
         <p key={director.id}>{director.name}</p>
     ))
 
+    // setup flight search criteria
     let newDate = new Date();
     let returnDate = new Date();
     newDate.setDate(newDate.getDate() + 2 );
     returnDate.setDate(newDate.getDate() + 8 );
-    console.log(locationToAirportMap.get(infos.filmingLocations[0].location)?.iata);
+    const filmLocation = infos.filmingLocations[0].location;
     const values = {'originLocationCode': userStore.user?.homeAirportCode,
-        'destinationLocationCode': locationToAirportMap.get(infos.filmingLocations[0].location)?.iata,
+        'destinationLocationCode': locationToAirportMap.get(filmLocation)?.iata,
         'departureDate': newDate,
         'returnDate': returnDate,
         'currencyCode': 'GBP',
@@ -39,7 +40,8 @@ const MovieCard = ({infos}) => {
     return(
 
         <Link to = "#" style={{color: "#ddd"}}  onClick={()=>{
-            document.getElementById('root').style.display = 'none';
+            modalStore.openModal(<h5>Searching for flights to {filmLocation}...</h5>);
+            document.getElementById('root').style.pointerEvents = 'none';
             searchFlights(values)
                 .catch((error: AxiosError) => {
                     const {data, status} = error.response!;
@@ -54,14 +56,14 @@ const MovieCard = ({infos}) => {
                             break;
                     }
                 }).then(()=>{
-                document.getElementById('root').style.display = 'unset';
+                modalStore.closeModal();
+                document.getElementById('root').style.pointerEvents = 'unset';
                 history.push('/flight-results')
-            })
- ;
+            });
         }}>
 
         <div
-            data-tip={'Take me to '+infos.filmingLocations[0].location} className='movie' style={{backgroundImage: `url(${infos.urlPoster})`}}>
+            data-tip={'Take me to '+filmLocation} className='movie' style={{backgroundImage: `url(${infos.urlPoster})`}}>
 
             <h2 className='movie__title'>{infos.title}</h2>
 
@@ -71,11 +73,8 @@ const MovieCard = ({infos}) => {
                 <MovieInfo name='duration' value={infos.runtime+' Mins'} />
                 <MovieInfo name='year released' value={infos.year} />
                 <MovieInfo name='directors' value={directors} />
-                <MovieInfo name='rating - IMDB' value={infos.rating} />
-                <MovieInfo name='filming location' value={infos.filmingLocations[0].location} />
-            </div>
-            <div className='movie__imdb'>
-                {/*<a href={infos.urlIMDB} className='movie__imdb-button' target='blank'> IMDb </a>*/}
+                <MovieInfo name='rating (IMDB)' value={infos.rating} />
+                <MovieInfo name='filming location' value={filmLocation} />
             </div>
             <ReactTooltip />
         </div>
