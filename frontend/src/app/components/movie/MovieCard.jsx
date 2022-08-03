@@ -1,4 +1,7 @@
-// @ts-nocheck
+import {Button} from 'semantic-ui-react';
+import {Link} from "react-router-dom";
+import {Icon} from "@iconify/react";
+
 const MovieInfo = ({name,value}) => (
     <div className={`movie__${name}`}>
     <span className='info__head'>
@@ -27,9 +30,9 @@ const MovieCard = ({infos}) => {
                 <MovieInfo name='rating' value={infos.rating} />
                 <MovieInfo name='filming location' value={infos.filmingLocations[0].location} />
             </div>
-            <div className='movie__imdb'>
-                <a href={infos.urlIMDB} className='movie__imdb-button' target='blank'> IMDb </a>
-            </div>
+            <Button as={Link} to='/plan-journey' style={{float: "left"}}>
+                <Icon icon="bxs:plane-take-off" style={{fontSize: '19px'}} inline={true}/>  Take me there
+            </Button>
 
         </div>
     )
