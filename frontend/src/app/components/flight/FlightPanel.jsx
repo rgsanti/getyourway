@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/flightpanel.css'
 import { useStore } from '../../store/store';
 
-const FlightPanel = ({airportDetail, date, time}) => {
+const FlightPanel = ({airportDetail, flightDate}) => {
 
   const {userStore, flightStore} = useStore();
 
@@ -32,7 +32,8 @@ const FlightPanel = ({airportDetail, date, time}) => {
           </div>
           <div className='flight-date-time'>
             {/* <h4>Departs: {date} {time}</h4> */}
-            <h4>Departs: {date}</h4>
+            {/* <h4>Departs: {flightDetail.date}</h4> */}
+            <h4>Departs: {flightDate}</h4>
           </div>
     </div>
   )

@@ -5,14 +5,16 @@ import {useStore} from '../../../store/store';
 import FlightSaveTable from '../Table/FlightSaveTable';
 import WeatherPanel from "../../../components/weather/WeatherPanel";
 import FlightPanel from "../../../components/flight/FlightPanel";
-import {AirportDetail} from "../../../models/flight";
+import {AirportDetail, FlightFormValues} from "../../../models/flight";
 import MapComponent from '../../../components/maps/MapComponent';
+import { FlightDetail } from '../../../models/flight';
 
 const JourneyDashboard = () => {
     const {flightStore, weatherStore} = useStore();
     const {savedFlights, getSavedFlights} = flightStore;
     const {getForecast} = weatherStore;
     const [airportDetail, setAirportDetail] = useState(new AirportDetail({}));
+    const [flightDate, setFlightDate] = useState(new Date());
 
     useEffect(() => {
         getSavedFlights();
@@ -21,6 +23,7 @@ const JourneyDashboard = () => {
     useEffect(() => {
         if (savedFlights !== undefined && savedFlights !== null && savedFlights.length > 0) {
             const airport = flightStore.airportCodeToDetailsMap.get(savedFlights[0].destinationLocationCode) || new AirportDetail({});
+            setFlightDate(savedFlights[0].departureDate);
             if (airport !== airportDetail) {
                 setAirportDetail(airport);
                 getForecast(airport);
@@ -51,11 +54,12 @@ const JourneyDashboard = () => {
                                             </p>
                                             <WeatherPanel airportDetail={airportDetail}/>
                                             </Grid.Column>
-                                            <Grid.Column key={2}>
+                                            <Grid.Column key={2} centered>
                                                 <p style={{fontWeight: 'bold', marginTop: '1em', marginBottom: '1em', textAlign: 'center', fontSize: '150%'}}>
                                                     Your Flight Details
                                                 </p>
-                                                <FlightPanel airportDetail={airportDetail} date={savedFlights[0].departureDate} time={savedFlights[0].time}/>
+                                                {/* <FlightPanel airportDetail={airportDetail} date={savedFlights[0].departureDate} time={savedFlights[0].time}/> */}
+                                                <FlightPanel airportDetail={airportDetail} flightDate={flightDate}/>
                                             </Grid.Column>
                                         </>) : (<>
                                         <h5 style={{
