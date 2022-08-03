@@ -59,6 +59,12 @@ body {
   font-weight: bold;
 }
 
+.modal {
+  top:unset!important;
+  left:unset!important;;
+  height:unset!important;;
+}
+
 .map {
   display: flex;
   align-items: center;

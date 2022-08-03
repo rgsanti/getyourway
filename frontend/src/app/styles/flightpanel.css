@@ -1,8 +1,4 @@
-*{
-    margin: 0px;
-    padding: 0px;
 
-}
 .flight-panel {
     background-color: pink;
     border-radius: 25px;
@@ -15,10 +11,6 @@
 .flight-container {
     display: flex;
     width: 100%;
-    /* background-color: pink;
-    border-radius: 25px;
-    min-width: 350px; */
-    /* align-items: center; */
 }
 
 .left-panel {
@@ -55,15 +47,7 @@
 }
 
 .flight-container {
-    /* background-color: rgba(140, 145, 148, 0.5) !important; */
-    /* border: white 3px solid; */
-    /* border-radius: 25px !important; */
-    /* display: flex; */
     justify-content: center;
-    /* align-items: center; */
-    /* align-content: center; */
-    /* position: relative; */
-    /* flex-wrap: wrap; */
     width: 100%;
     display: flex;
 }

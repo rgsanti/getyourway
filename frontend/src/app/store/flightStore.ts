@@ -10,6 +10,7 @@ export default class FlightStore {
     airports: Airport[] = airportIATAOptions;
     ukAirports: Airport[] = ukAirportIATAOptions;
     airportCodeToDetailsMap:Map<string, AirportDetail> = new Map();
+    locationToAirportMap:Map<string, AirportDetail> = new Map();
     flights: Flight[] = [];
     savedFlights: Flight[] = [];
     loading = false;
@@ -18,7 +19,15 @@ export default class FlightStore {
 
     constructor() {
         makeAutoObservable(this);
-        airportDetailsJson.forEach(airport=>this.airportCodeToDetailsMap.set(airport.iata, new AirportDetail(airport)))
+        airportDetailsJson.forEach(airport=>{
+            this.airportCodeToDetailsMap.set(airport.iata, new AirportDetail(airport));
+            this.locationToAirportMap.set(airport.city,new AirportDetail(airport));
+            //manual additions
+            if(airport.iata=='LPL'){
+               this.locationToAirportMap.set('Llandudno',new AirportDetail(airport));
+            }
+        });
+
     }
 
     deleteSelectedSavedFlight = async (id: number) => {
@@ -59,10 +68,20 @@ export default class FlightStore {
 
             this.loadingInitial = false;
         }
-        catch (error) {
-            console.error(error);
-            toast.error("Error has occurred. See console log!");
+        catch(error) {
+            // @ts-ignore
+            const {data, status} = error.response!;
 
+            switch (status) {
+                case 403:
+                    toast.error("Unauthorized access!");
+                    window.location.reload();
+                    break;
+                case 500:
+                    console.log(data);
+                    toast.error('Internal server error! See console log!')
+                    break;
+            }
             this.loadingInitial = false;
         }
     }

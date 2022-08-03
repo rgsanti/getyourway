@@ -12,6 +12,7 @@ import CustomSelectInput from '../../../components/form/CustomSelectInput';
 import {AxiosError} from 'axios';
 import {toast} from 'react-toastify';
 import {history} from '../../../../index';
+import MoviePage from "../../MoviePage";
 
 const FlightSearchForm = () => {
     const { flightStore, userStore } = useStore();
@@ -73,6 +74,7 @@ const FlightSearchForm = () => {
                                     break;
                                 case 403:
                                     toast.error("Unauthorized access!");
+                                    window.location.reload();
                                     break;
                                 case 500:
                                     console.log(data);
@@ -92,14 +94,14 @@ const FlightSearchForm = () => {
                           <Grid.Row columns={3} centered>
 
                             <Grid.Column>
-                                <CustomSelectInput options={ukAirports} placeholder='Origin Location Code' name='originLocationCode' />
+                                <CustomSelectInput options={ukAirports} placeholder='From' name='originLocationCode' />
                                 <ErrorMessage
                                     name='errorOrigin'
                                     render={() => (<Label basic color='red' content={errors.errorOrigin} />)} />
                             </Grid.Column>
 
                             <Grid.Column>
-                                <CustomSelectInput options={airports} placeholder='Destination Location Code' name='destinationLocationCode' />
+                                <CustomSelectInput options={airports} placeholder='To' name='destinationLocationCode' />
                                 <ErrorMessage
                                     name='errorDestination'
                                     render={() => (<Label basic color='red' content={errors.errorDestination} />)} />
@@ -141,7 +143,7 @@ const FlightSearchForm = () => {
 
                         <Grid.Row columns={1}>
 
-                            <Grid.Column centered>
+                            <Grid.Column centered={+true}>
 
 
                                 <Button.Group size='huge' widths='3'>
@@ -157,9 +159,12 @@ const FlightSearchForm = () => {
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
+                    <MoviePage />
                 </Form>
             )}
+
         </Formik>
+
     );
 }
 

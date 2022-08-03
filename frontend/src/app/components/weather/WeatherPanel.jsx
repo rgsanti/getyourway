@@ -1,29 +1,33 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {observer} from "mobx-react-lite";
 import '../../styles/weatherpanel.css'
 import WeatherItem from './WeatherItem'
+import {useStore} from "../../store/store";
 
-const WeatherPanel = () => {
+const WeatherPanel = ({airportDetail}) => {
+    const {weatherStore} = useStore();
+    const {weather, getForecast} = weatherStore;
 
-  const icon = "http://openweathermap.org/img/wn/10d@2x.png"
-  const day = "Day" 
-  const temp = "30C"
+    useEffect(() => {
+        getForecast(airportDetail);
+    }, [getForecast, weatherStore]);
 
-  return (
-    <>
-        <div className="weather-container">
-            <div className="weather-panel">
-                <WeatherItem icon={icon} day={day} temp={temp}/>
-                <WeatherItem icon={icon} day={day} temp={temp}/>
-                <WeatherItem icon={icon} day={day} temp={temp}/>
-                <WeatherItem icon={icon} day={day} temp={temp}/>
-                <WeatherItem icon={icon} day={day} temp={temp}/>
-                <WeatherItem icon={icon} day={day} temp={temp}/>
-                <WeatherItem icon={icon} day={day} temp={temp}/>
+    return (
+        <>
+            <div className="weather-container">
+                <div className="weather-panel">
+                    {weather?.list.filter(x => x.dt_txt.endsWith("12:00:00")).map((x, i) => (
+                        <WeatherItem key={i}
+                                     alt={airportDetail.city + ' Forecast - ' + x.weather[0].description}
+                                     icon={x.weather[0].icon}
+                                     day={x.dt}
+                                     temp={Math.round(x.main.temp - 273)}/>
+                    ))}
+                </div>
             </div>
-        </div>
-    </>
-  )
+        </>
+    )
 
 }
 
-export default WeatherPanel
+export default observer(WeatherPanel)

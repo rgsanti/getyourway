@@ -10,7 +10,7 @@ const Account = () => {
             <p></p>
             <h1 style={{textAlign: "center"}}>My Account</h1>
 
-            <Container vertical className="container">
+            <Container vertical={+true} className="container" style={{paddingLeft:0,paddingRight:0}}>
 
                 <Table definition>
                     <Table.Body>

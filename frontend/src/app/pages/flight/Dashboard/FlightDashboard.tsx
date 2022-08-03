@@ -6,7 +6,7 @@ import FlightSearchForm from '../Form/FlightSearchForm';
 import {Link} from "react-router-dom";
 import {Icon} from "@iconify/react";
 import CarouselSlider from '../../home/CarouselSlider';
-import MoviePage from '../../MoviePage';
+import '../../../styles/dashboard.css';
 
 const FlightDashboard = () => {
     const {flightStore} = useStore();
@@ -14,23 +14,22 @@ const FlightDashboard = () => {
 
     useEffect(() => {
         getFlights();
-    }, [flightStore]);
+    }, [getFlights, flightStore]);
 
     return (
         <>
         <CarouselSlider />
-            <Segment inverter textAlign="center" vertical className="flight" style={{paddingBottom:0}}>
-                <Container vertical className="container">
+            <Segment inverter={+true} textAlign="center" vertical className="flight" style={{paddingBottom:0}}>
+                <Container vertical={+true} className="container">
                     <Header as="h1" inverted style={{textShadow: "1px 1px black", display: "inline-block", marginRight: 100, fontSize: '36px'}}>
                         Search Flights
                     </Header>
-                    <Button as={Link} to='/plan-journey' style={{float: "left"}}>
-                        <Icon icon="ion:arrow-back" style={{fontSize: '19px'}} inline={true}/>Journey
+                    <Button as={Link} to='/' style={{float: "left"}}>
+                        <Icon icon="ion:arrow-back" style={{fontSize: '19px'}} inline={true}/>Home
                     </Button>
                     <FlightSearchForm/>
                 </Container>
             </Segment>
-            <MoviePage />
         </>
     );
 }

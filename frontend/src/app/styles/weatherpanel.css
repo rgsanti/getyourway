@@ -1,6 +1,5 @@
 .weather-panel {
-    /* background-color: #2185D0; */
-    background-color: #08D2FB;
+    background-color: rgba(106, 189, 220, 0.78);
     display: flex;
     width: 100%;
     color: white;
@@ -11,7 +10,9 @@
 }
 
 .left-panel {
+    margin-left: 20px;
     flex: 1;
+    width: 100px;
 }
 
 .right-panel {
@@ -20,18 +21,11 @@
 }
 
 .weather-container {
-    /* background-color: rgba(140, 145, 148, 0.5) !important; */
-    /* border: white 3px solid; */
-    /* border-radius: 25px !important; */
-    /* display: flex; */
     justify-content: center;
-    /* align-items: center; */
-    /* align-content: center; */
-    /* position: relative; */
-    /* flex-wrap: wrap; */
     width: 100%;
     display: flex;
     align-items: center;
+    text-shadow: 0.1px 0.3px black;
 }
 
 .weather-img {
