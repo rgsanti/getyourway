@@ -20,25 +20,25 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class MovieApiClient
-{
+public class MovieApiClient {
     @Value("${client.movie.api.token}")
     private String token;
     @Value("${client.movie.api.url}")
     private String url;
 
     private final WebClient.Builder webClientBuilder;
+    private final WebClient webClient;
 
     public MovieApiClient(WebClient.Builder webClientBuilder) {
         this.webClientBuilder = webClientBuilder;
-    }
-
-    public Mono<MovieCollectionDTO> getMovie(String imdbCode)
-    {
-        Mono<MovieCollectionDTO> response = webClientBuilder.exchangeStrategies(ExchangeStrategies.builder()
+        this.webClient = webClientBuilder.exchangeStrategies(ExchangeStrategies.builder()
                         .codecs(configurer -> configurer.defaultCodecs()
                                 .maxInMemorySize(16 * 1024 * 1024)).build())
-                .build()
+                .build();
+    }
+
+    public Mono<MovieCollectionDTO> getMovie(String imdbCode) {
+        Mono<MovieCollectionDTO> response = webClient
                 .get()
                 .uri(buildUri(imdbCode))
                 .retrieve()
@@ -69,8 +69,7 @@ public class MovieApiClient
                 .collect(Collectors.toList());
     }
 
-    public URI buildUri(String imdbCode)
-    {
+    public URI buildUri(String imdbCode) {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url);
         uriBuilder.queryParam("token", token);
         uriBuilder.queryParam("idIMDB", imdbCode);

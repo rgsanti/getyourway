@@ -18,7 +18,7 @@ const MoviePage = () => {
             <Segment inverter={+true} textAlign="center" vertical className="flight" style={{paddingBottom:0}}>
                 <Container vertical={+true}  className="container">
                     <Header as="h1" inverted style={{textShadow: "1px 1px black", textAlign: "centre", fontSize: '36px'}}>
-                        Choose a Sky Original & we'll take you there!
+                        Or, choose a Sky Original & we'll take you there!
                     </Header>
                     <div className='movies__container'>
                         {skyOriginals.map((movie,i)=> (

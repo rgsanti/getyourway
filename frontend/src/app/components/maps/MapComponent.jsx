@@ -1,6 +1,6 @@
-import React, {useEffect, useState, useRef} from 'react';
-import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api'
-import { Box, Flex, HStack, Input, ButtonGroup, Button, IconButton, Text, Center } from '@chakra-ui/react'
+import React, {useRef, useState} from 'react';
+import {Autocomplete, DirectionsRenderer, GoogleMap, useJsApiLoader} from '@react-google-maps/api'
+import {Box, Button, ButtonGroup, Flex, HStack, Input, Text} from '@chakra-ui/react'
 
 const center = { lat: 51.5074, lng: 0.1272}
 
