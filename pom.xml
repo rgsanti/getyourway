@@ -137,6 +137,12 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<profiles>
+						<profile>local</profile>
+						<profile>localnoauth</profile>
+						<profile>common</profile>
+						<profile>prod</profile>
+					</profiles>
 				</configuration>
 			</plugin>
                   <plugin>

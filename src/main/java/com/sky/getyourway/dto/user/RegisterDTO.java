@@ -3,16 +3,16 @@ package com.sky.getyourway.dto.user;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sky.getyourway.util.constraint.EmailUniqueConstraint;
 import com.sky.getyourway.util.constraint.UsernameUniqueConstraint;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterDTO
