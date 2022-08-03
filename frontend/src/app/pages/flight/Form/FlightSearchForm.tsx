@@ -12,6 +12,7 @@ import CustomSelectInput from '../../../components/form/CustomSelectInput';
 import {AxiosError} from 'axios';
 import {toast} from 'react-toastify';
 import {history} from '../../../../index';
+import MoviePage from "../../MoviePage";
 
 const FlightSearchForm = () => {
     const { flightStore, userStore } = useStore();
@@ -158,9 +159,12 @@ const FlightSearchForm = () => {
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
+                    <MoviePage />
                 </Form>
             )}
+
         </Formik>
+
     );
 }
 

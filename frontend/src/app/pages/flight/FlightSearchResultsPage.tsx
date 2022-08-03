@@ -33,6 +33,15 @@ const FlightSearchResultsPage = () => {
                 <Button as={Link} to='/plan-journey' style={{float: "right"}}>
                     <Icon icon="ion:arrow-forward" style={{fontSize: '19px'}} inline={true}/>Journey
                 </Button>
+                {(flightStore.flights!==null &&flightStore.flights.length>0)?(
+                    <>
+                        <h4>
+                            {flightStore.airportCodeToDetailsMap.get( flightStore.flights[0].originLocationCode)?.name}
+                            - to -
+                            {flightStore.airportCodeToDetailsMap.get( flightStore.flights[0].destinationLocationCode)?.name}
+                        </h4>
+                    </>):(<></>)
+                }
             </Container>
 
         </Segment>

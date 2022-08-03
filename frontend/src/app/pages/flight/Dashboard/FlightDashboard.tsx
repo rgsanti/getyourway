@@ -20,8 +20,8 @@ const FlightDashboard = () => {
     return (
         <>
         <CarouselSlider />
-            <Segment inverter textAlign="center" vertical className="flight" style={{paddingBottom:0}}>
-                <Container vertical className="container">
+            <Segment inverter={+true} textAlign="center" vertical className="flight" style={{paddingBottom:0}}>
+                <Container vertical={+true} className="container">
                     <Header as="h1" inverted style={{textShadow: "1px 1px black", display: "inline-block", marginRight: 100, fontSize: '36px'}}>
                         Search Flights
                     </Header>
@@ -31,7 +31,6 @@ const FlightDashboard = () => {
                     <FlightSearchForm/>
                 </Container>
             </Segment>
-            <MoviePage />
         </>
     );
 }
