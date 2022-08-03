@@ -7,10 +7,17 @@ import {Link} from "react-router-dom";
 import {Icon} from "@iconify/react";
 import CarouselSlider from '../../home/CarouselSlider';
 import MoviePage from '../../MoviePage';
+import '../../../styles/dashboard.css';
 
 const FlightDashboard = () => {
-    const {flightStore} = useStore();
+    //const {flightStore} = useStore();
+    const {userStore, flightStore} = useStore();
     const {getFlights} = flightStore;
+    //const {getUser} = userStore;
+
+    // useEffect(() => {
+    //     getUser();
+    // }, [userStore]);
 
     useEffect(() => {
         getFlights();
@@ -18,7 +25,11 @@ const FlightDashboard = () => {
 
     return (
         <>
+        
         <CarouselSlider />
+        <div className='welcome'>
+        {/* <h1 style={{textAlign: "center"}}>Welcome! {userStore.user?.firstname}</h1> */}
+        </div>
             <Segment inverter textAlign="center" vertical className="flight" style={{paddingBottom:0}}>
                 <Container vertical className="container">
                     <Header as="h1" inverted style={{textShadow: "1px 1px black", display: "inline-block", marginRight: 100, fontSize: '36px'}}>

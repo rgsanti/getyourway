@@ -1,0 +1,12 @@
+.welcome {
+    padding: 0.5rem 0rem;
+    display: flex;
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
