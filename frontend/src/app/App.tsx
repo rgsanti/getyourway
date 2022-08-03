@@ -15,6 +15,7 @@ import DashboardPage from "./pages/user/Dashboard";
 import MoviePage from "./pages/MoviePage";
 import FlightSearchResultsPage from "./pages/flight/Dashboard/FlightSearchResultsPage";
 import LoginForm from './pages/user/LoginForm';
+import MapComponent from './components/maps/MapComponent';
 
 function App() {
   const { commonStore, userStore } = useStore();

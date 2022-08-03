@@ -8,6 +8,9 @@ import {Button, ButtonGroup, Divider, Header, Label} from 'semantic-ui-react';
 import {AxiosError} from 'axios';
 import CustomTextInput from '../../components/form/CustomTextInput';
 import {toast} from 'react-toastify';
+import { Link } from 'react-router-dom';
+import { link } from 'fs';
+import { useHistory } from "react-router-dom";
 // import { link } from 'fs';
 
 const LoginForm = () => {
@@ -27,6 +30,13 @@ const LoginForm = () => {
         username: Yup.string().required('Username is required!'),
         password: Yup.string().required('Password is required!')
     }
+
+    const history = useHistory();
+
+    const routeChange = () =>{ 
+        let path = `/flights`; 
+        history.push(path);
+      }
 
     return (
         <Formik
