@@ -1,5 +1,5 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
-import {Flight, FlightFormValues, FlightSearchFormValues} from '../models/flight';
+import {AirportDetail, Flight, FlightFormValues, FlightSearchFormValues} from '../models/flight';
 import {LoginFormValues, RegisterFormValues, User} from '../models/user';
 import {store} from '../store/store';
 import {Movie} from "../models/movie";
@@ -46,11 +46,18 @@ const MovieClient =
     skyOriginals: () => requests.get<Movie[]>('/movie/sky-originals')
 }
 
+const WeatherClient=
+{
+    getForecast: (airportDetail: AirportDetail)  =>
+        requests.get<object>('/weather/forecast?lon='+airportDetail.lon+'&lat='+airportDetail.lat)
+}
+
 const client =
 {
     FlightClient,
     UserClient,
-    MovieClient
+    MovieClient,
+    WeatherClient
 }
 
 export default client;

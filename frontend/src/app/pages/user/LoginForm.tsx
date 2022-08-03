@@ -8,10 +8,11 @@ import {Button, Divider, Header, Label} from 'semantic-ui-react';
 import {AxiosError} from 'axios';
 import CustomTextInput from '../../components/form/CustomTextInput';
 import {toast} from 'react-toastify';
+import {useHistory} from 'react-router-dom';
 
 const LoginForm = () => {
     const { modalStore, userStore } = useStore();
-
+    
     if(userStore.isLoggedIn) modalStore.closeModal();
 
     const initialValues = {
@@ -27,6 +28,13 @@ const LoginForm = () => {
         password: Yup.string().required('Password is required!')
     }
 
+    const history = useHistory();
+
+    const routeChange = () =>{ 
+        let path = `/flights`; 
+        history.push(path);
+      }
+
     return (
         <Formik
             initialValues={initialValues}
@@ -34,6 +42,7 @@ const LoginForm = () => {
             onSubmit={(values, { setErrors }) => userStore.login(values)
             .catch((error: AxiosError) => {
                 const { data, status } = error.response!;
+                
 
                 switch (status) {
                     case 400:
@@ -87,14 +96,14 @@ const LoginForm = () => {
                         name='errorPassword'
                         render={() => <Label basic color='red' content={errors.errorPassword} />}
                     />
-
+                    
                     <Button
                         disabled={!isValid || !dirty || isSubmitting}
                         loading={isSubmitting}
                         positive
                         content='Login'
                         type='submit'
-                        fluid
+                        fluid  
                     />
 
                     <Button

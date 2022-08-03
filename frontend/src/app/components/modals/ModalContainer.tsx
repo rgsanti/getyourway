@@ -9,7 +9,7 @@ const ModalContainer = () => {
     return (
         <Modal
             open={modalStore.modal.open}
-            close={modalStore.closeModal}
+            onClose={modalStore.closeModal}
             size='mini' >
 
             <Modal.Content>
