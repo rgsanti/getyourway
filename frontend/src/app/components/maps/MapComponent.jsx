@@ -1,12 +1,15 @@
 import React, {useState, useRef} from 'react';
 import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api'
 import { Box, Flex, HStack, Input, ButtonGroup, Button, Text, ChakraProvider, theme, Center } from '@chakra-ui/react'
+import { useStore } from '../../store/store';
 
 const center = { lat: 51.5074, lng: 0.1272}
 
-const MapComponent = () => {
+const MapComponent = ({flightOriginCode}) => {
 
     const google = window.google;
+
+    const {flightStore} = useStore();
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -19,7 +22,9 @@ const MapComponent = () => {
     const [duration, setDuration] = useState('');
 
     const originRef = useRef();
-    const destinationRef = useRef();
+    // const destinationRef = useRef();
+    // const destinationRef = airportDetail.city;
+    // const destinationRef = flightStore.ukAirports.find(x => x.value === flightOriginCode).text.slice(6);
 
     while (!isLoaded) {
         return <h1>Loading...</h1>
@@ -32,7 +37,7 @@ const MapComponent = () => {
         const directionsService = new google.maps.DirectionsService();
         const results = await directionsService.route({
             origin: originRef.current.value,
-            destination: destinationRef.current.value,
+            destination: flightStore.ukAirports.find(x => x.value === flightOriginCode).text.slice(6),
             travelMode: google.maps.TravelMode.DRIVING
         })
         setDirectionsResponse(results)
@@ -52,11 +57,11 @@ const MapComponent = () => {
                         <Input type='text' placeholder='Origin' ref={originRef}/>
                     </Autocomplete>
                 </Box>
-                <Box>
+                {/* <Box>
                      <Autocomplete>
                         <Input type='text' placeholder='Destination' ref={destinationRef}/>
                     </Autocomplete>
-                </Box>
+                </Box> */}
 
                 <ButtonGroup>
                     <Button colorScheme='pink' type='submit' onClick={calculateRoute}>
@@ -67,7 +72,7 @@ const MapComponent = () => {
 
             <HStack>
                 <Text>
-                    Distance: {distance} <br /> Duration: {duration} 
+                    Driving Distance: {distance} <br /> Duration: {duration} 
                 </Text>
             </HStack>
 

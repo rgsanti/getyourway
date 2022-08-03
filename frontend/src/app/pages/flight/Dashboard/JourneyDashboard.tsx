@@ -41,7 +41,7 @@ const JourneyDashboard = () => {
                 <Container vertical={+true} className="container">
                     <Header as="h1" inverted
                             style={{textShadow: "1px 1px black", display: "inline-block", fontSize: '36px'}}>
-                        Upcoming Journeys
+                        Your Upcoming Journey
                     </Header>
                     <p></p>
                     <Grid divided='vertically'>
@@ -51,14 +51,14 @@ const JourneyDashboard = () => {
                                         <>
                                             <Grid.Column key={1} centered>
                                             <p style={{marginTop: '1em', marginBottom: '1em', textAlign: 'center', fontSize: '150%'}}>
-                                                <text style={{fontWeight: 'bold'}}>Location:</text> {airportDetail.city} | 
+                                                <text style={{fontWeight: 'bold'}}>Destination:</text> {airportDetail.city} | 
                                                 <text style={{fontWeight: 'bold'}}> Timezone:</text> {airportDetail.tz}
                                             </p>
                                             <WeatherPanel airportDetail={airportDetail}/>
                                             </Grid.Column>
                                             <Grid.Column key={2} centered>
                                                 <p style={{fontWeight: 'bold', marginTop: '1em', marginBottom: '1em', textAlign: 'center', fontSize: '150%'}}>
-                                                    Your Flight Details
+                                                    Flight Details
                                                 </p>
                                                 {/* <FlightPanel airportDetail={airportDetail} date={savedFlights[0].departureDate} time={savedFlights[0].time}/> */}
                                                 <FlightPanel airportDetail={airportDetail} flightDate={flightDate} flightOriginCode={flightOriginCode}/>
@@ -70,7 +70,7 @@ const JourneyDashboard = () => {
                                             color: "grey",
                                             textAlign: "center",
                                             fontSize: '20px'
-                                        }}>No Upcoming Journeys</h5>
+                                        }}>No Upcoming Journey</h5>
                                     </>)}
                             {/* </Grid.Column> */}
                             {/* <Grid.Column key={2}>
@@ -98,9 +98,9 @@ const JourneyDashboard = () => {
                 <Container vertical={+true} className="container">
                     <Header as="h1" inverted
                             style={{textShadow: "1px 1px black", display: "inline-block", fontSize: '36px'}}>
-                        Directions
+                        Directions to Airport
                     </Header>
-                    <MapComponent/>
+                    <MapComponent flightOriginCode={flightOriginCode}/>
                 </Container>
             </Segment>
         </>
