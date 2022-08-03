@@ -7,7 +7,7 @@ const FlightPanel = () => {
           <div className='flight-container'>
             <div className='left-panel'>
               <img className='flight-icon' id='to' src='https://cdn-icons-png.flaticon.com/512/158/158225.png'/>
-              <h4>WP7482</h4>
+              <h4 id="flight-code">WP7482</h4>
             </div>
             <div className='center-panel'>
                 <h4 id="from">From:</h4>

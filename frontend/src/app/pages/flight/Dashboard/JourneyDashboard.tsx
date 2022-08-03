@@ -35,16 +35,6 @@ const JourneyDashboard = () => {
                                 <FlightPanel />
                             </Grid.Column>
                         </Grid.Row>
-                        <Grid.Row columns={2}>
-                            <Grid.Column key={1}>
-                                {/* directions form and steps component */}
-                                <DirectionsForm/>
-                                <Directions/>
-                            </Grid.Column>
-                            <Grid.Column key={2}>
-                                {/* maps component */}
-                            </Grid.Column>
-                        </Grid.Row>
                     </Grid>
                 </Container>
 

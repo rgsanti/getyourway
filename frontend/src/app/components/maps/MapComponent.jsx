@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api'
-import { Box, Flex, HStack, Input, ButtonGroup, Button, IconButton, Text, Center } from '@chakra-ui/react'
+import { Box, Flex, HStack, Input, ButtonGroup, Button, IconButton, Text, Center, ChakraProvider, theme } from '@chakra-ui/react'
 
 const center = { lat: 51.5074, lng: 0.1272}
 
@@ -40,33 +40,10 @@ const MapComponent = () => {
         setDuration(results.routes[0].legs[0].duration.text)
     }
 
-    // function clearRoute() {
-    //     setDirectionsResponse(null)
-    //     setDistance('')
-    //     setDuration('')
-    //     originRef.current.value = ''
-    //     destinationRef.current.value = ''
-    // }
-
     return (
         <Flex position='relative' flexDirection='column' alignItems='center' h='100vh' w='100vw'>
-            <Box position='absolute' left={650} top={100} h='100%' w='100%'>
-                <GoogleMap
-                center={center}
-                zoom={15}
-                mapContainerStyle={{ width: '50%', height: '70%' }}
-                options={{
-                    zoomControl: false,
-                    streetViewControl: false,
-                    mapTypeControl: false,
-                    fullscreenControl: false,
-                }}
-                onLoad={map => setMap(map)}>
-                {directionsResponse && (
-                    <DirectionsRenderer directions={directionsResponse} />
-                )}
-                </GoogleMap>
-            </Box>
+
+            <ChakraProvider theme={theme}>
 
             <HStack spacing={2}>
                 <Box>
@@ -82,9 +59,8 @@ const MapComponent = () => {
 
                 <ButtonGroup>
                     <Button colorScheme='pink' type='submit' onClick={calculateRoute}>
-                        Calculate Route
+                        Find Route
                     </Button>
-                    {/* <IconButton aria-label='center back' onClick={clearRoute}/> */}
                 </ButtonGroup>
             </HStack>
 
@@ -93,6 +69,26 @@ const MapComponent = () => {
                     Distance: {distance} <br /> Duration: {duration} 
                 </Text>
             </HStack>
+
+            <Box position='relative' left='25%' top='2%' h='100%' w='100%'>
+                <GoogleMap
+                center={center}
+                zoom={15}
+                mapContainerStyle={{ width: '50%', height: '95%' }}
+                options={{
+                    zoomControl: false,
+                    streetViewControl: false,
+                    mapTypeControl: false,
+                    fullscreenControl: false,
+                }}
+                onLoad={map => setMap(map)}>
+                {directionsResponse && (
+                    <DirectionsRenderer directions={directionsResponse} />
+                )}
+                </GoogleMap>
+            </Box>
+
+            </ChakraProvider>
 
         </Flex>
     )
