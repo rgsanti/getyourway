@@ -53,10 +53,9 @@ const JourneyDashboard = () => {
                                             <WeatherPanel airportDetail={airportDetail}/>
                                         </>) : (<>
                                         <h5 style={{
-                                            marginLeft: '5em',
+                                            marginLeft: '25em',
                                             color: "grey",
                                             textAlign: "center",
-                                            display: "inline-block",
                                             fontSize: '20px'
                                         }}>No Upcoming journeys</h5>
                                     </>)}
@@ -70,12 +69,18 @@ const JourneyDashboard = () => {
                 </Container>
 
             </Segment>
-            <Segment>
-                <MapComponent/>
-            </Segment>
             <Segment inverter={+true} textAlign="center" vertical className="flight" style={{paddingTop: 0}}>
                 <Container vertical={+true} className="container">
                     <FlightSaveTable flights={savedFlights}/>
+                </Container>
+            </Segment>
+            <Segment inverter={+true} textAlign="center" vertical className="flight" style={{paddingTop: 0}}>
+                <Container vertical={+true} className="container">
+                    <Header as="h1" inverted
+                            style={{textShadow: "1px 1px black", display: "inline-block", fontSize: '36px'}}>
+                        Directions
+                    </Header>
+                    <MapComponent/>
                 </Container>
             </Segment>
         </>

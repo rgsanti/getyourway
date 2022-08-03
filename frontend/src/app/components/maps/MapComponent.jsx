@@ -50,7 +50,7 @@ const MapComponent = () => {
 
     return (
         <Flex position='relative' flexDirection='column' alignItems='center' h='100vh' w='100vw'>
-            <Box position='absolute' left={650} top={100} h='100%' w='100%'>
+            <Box style={{marginRight:'70em'}}  position='relative' left={650} top={100} h='100%' w='100%'>
                 <GoogleMap
                 center={center}
                 zoom={15}
