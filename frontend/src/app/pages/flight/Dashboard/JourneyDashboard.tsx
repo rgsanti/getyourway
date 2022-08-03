@@ -15,6 +15,7 @@ const JourneyDashboard = () => {
     const {getForecast} = weatherStore;
     const [airportDetail, setAirportDetail] = useState(new AirportDetail({}));
     const [flightDate, setFlightDate] = useState(new Date());
+    const [flightOriginCode, setFlightOriginCode] = useState('');
 
     useEffect(() => {
         getSavedFlights();
@@ -24,6 +25,7 @@ const JourneyDashboard = () => {
         if (savedFlights !== undefined && savedFlights !== null && savedFlights.length > 0) {
             const airport = flightStore.airportCodeToDetailsMap.get(savedFlights[0].destinationLocationCode) || new AirportDetail({});
             setFlightDate(savedFlights[0].departureDate);
+            setFlightOriginCode(savedFlights[0].originLocationCode);
             if (airport !== airportDetail) {
                 setAirportDetail(airport);
                 getForecast(airport);
@@ -59,7 +61,7 @@ const JourneyDashboard = () => {
                                                     Your Flight Details
                                                 </p>
                                                 {/* <FlightPanel airportDetail={airportDetail} date={savedFlights[0].departureDate} time={savedFlights[0].time}/> */}
-                                                <FlightPanel airportDetail={airportDetail} flightDate={flightDate}/>
+                                                <FlightPanel airportDetail={airportDetail} flightDate={flightDate} flightOriginCode={flightOriginCode}/>
                                             </Grid.Column>
                                         </>) : (<>
                                         <h5 style={{

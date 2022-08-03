@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/flightpanel.css'
 import { useStore } from '../../store/store';
 
-const FlightPanel = ({airportDetail, flightDate}) => {
+const FlightPanel = ({airportDetail, flightDate, flightOriginCode}) => {
 
   const {userStore, flightStore} = useStore();
 
@@ -16,9 +16,9 @@ const FlightPanel = ({airportDetail, flightDate}) => {
             <div className='center-panel'>
                 <h4 id="from">From:</h4>
                 {/* <h1 id="from-code">LHR</h1> */}
-                <h1 id="from-code">{userStore.user.homeAirportCode}</h1>
+                <h1 id="from-code">{flightOriginCode}</h1>
                 {/* <h4>London Heathrow</h4> */}
-                <h4>{flightStore.ukAirports.find(x => x.value === userStore.user.homeAirportCode).text.slice(6)}</h4>
+                <h4>{flightStore.ukAirports.find(x => x.value === flightOriginCode).text.slice(6)}</h4>
                 {/* <h2>10/10/2022</h2> */}
             </div>
             <div className='right-panel'>
