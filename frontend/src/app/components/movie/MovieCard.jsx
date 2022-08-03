@@ -21,7 +21,7 @@ const MovieCard = ({infos}) => {
 
             <h2 className='movie__title'>{infos.title}</h2>
 
-            <span className='movie__description'>{infos.simplePlot}</span>
+            <div style={{overflowY:"scroll", height:"100px"}} className='movie__description'>{infos.simplePlot}</div>
 
             <div className='movie__infos'>
                 <MovieInfo name='duration' value={infos.runtime+' Mins'} />
