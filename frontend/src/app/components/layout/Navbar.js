@@ -19,16 +19,16 @@ const Navbar = () => {
                         }}>getyourway</Link>
                     </div>
                     <div className='mainlinks'>
-                        <Link to='/plan-journey' style={{
+                        <Link to='/flights' style={{
                             margin: '5px',
-                        }}>Your Upcoming Journeys</Link>
-                        <Link to='/' style={{
+                        }}>Home</Link>
+                        <Link to='/plan-journey' style={{
                             margin: '5px',
                             borderLeftStyle: 'solid',
                             borderRightStyle: 'solid',
                             borderColor: '#08d2fb',
                             padding: '8px'
-                        }}>Dashboard</Link>
+                        }}>Upcoming Journeys</Link>
                         <Link to='/account' style={{
                             margin: '5px',
                         }}>My Account</Link>
