@@ -5,7 +5,6 @@ import {useStore} from '../../../store/store';
 import FlightSaveTable from '../Table/FlightSaveTable';
 import WeatherPanel from "../../../components/weather/WeatherPanel";
 import FlightPanel from "../../../components/flight/FlightPanel";
-//import FlightPanel from "../../../components/flight/FlightPanel";
 import {AirportDetail} from "../../../models/flight";
 import MapComponent from '../../../components/maps/MapComponent';
 
@@ -48,8 +47,6 @@ const JourneyDashboard = () => {
                                             <p style={{marginTop: '3em', marginBottom: '1em', textAlign: 'center'}}>
                                                 <text style={{fontWeight: 'bold'}}>Location:</text> {airportDetail.city} | 
                                                 <text style={{fontWeight: 'bold'}}> Timezone:</text> {airportDetail.tz}
-                                                {/* <span style={{fontWeight: "bold", marginLeft: '3em'}}>Location</span>: {airportDetail.city} | 
-                                                <span style={{fontWeight: "bold"}}> Timezone</span>: {airportDetail.tz} */}
                                             </p>
                                             <WeatherPanel airportDetail={airportDetail}/>
                                         </>) : (<>
@@ -64,9 +61,8 @@ const JourneyDashboard = () => {
                             <Grid.Column key={2}>
                                             <p style={{fontWeight: 'bold', marginTop: '3em', marginBottom: '1em', textAlign: 'center'}}>
                                                 Your Flight Details
-                                                {/* <span style={{fontWeight: "bold", marginLeft: '3em'}}>Your Flight Details</span> */}
                                             </p>
-                                <FlightPanel />
+                                <FlightPanel airportDetail={airportDetail} />
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
