@@ -7,7 +7,7 @@ import {history} from "../../../index";
 import {AxiosError} from "axios";
 import {toast} from "react-toastify";
 
-const MovieInfo = ({name,value}) => (
+const MovieInfo = ({name, value}) => (
     <div className={`movie__${name}`}>
     <span className='info__head'>
       {name.replace(/\b\w/g, l => l.toUpperCase())}
@@ -27,19 +27,21 @@ const MovieCard = ({infos}) => {
     // setup flight search criteria
     let newDate = new Date();
     let returnDate = new Date();
-    newDate.setDate(newDate.getDate() + 2 );
-    returnDate.setDate(newDate.getDate() + 8 );
+    newDate.setDate(newDate.getDate() + 2);
+    returnDate.setDate(newDate.getDate() + 8);
     const filmLocation = infos.filmingLocations[0].location;
-    const values = {'originLocationCode': userStore.user?.homeAirportCode,
+    const values = {
+        'originLocationCode': userStore.user?.homeAirportCode,
         'destinationLocationCode': locationToAirportMap.get(filmLocation)?.iata,
         'departureDate': newDate,
         'returnDate': returnDate,
         'currencyCode': 'GBP',
-        'passengerCount': 1};
+        'passengerCount': 1
+    };
 
-    return(
+    return (
 
-        <Link to = "#" style={{color: "#ddd"}}  onClick={()=>{
+        <Link to="#" style={{color: "#ddd"}} onClick={() => {
             modalStore.openModal(<h5>Searching for flights to {filmLocation}...</h5>);
             document.getElementById('root').style.pointerEvents = 'none';
             searchFlights(values)
@@ -55,29 +57,31 @@ const MovieCard = ({infos}) => {
                             toast.error('Internal server error! See console log!')
                             break;
                     }
-                }).then(()=>{
+                }).then(() => {
                 modalStore.closeModal();
                 document.getElementById('root').style.pointerEvents = 'unset';
-                history.push('/flight-results')
+                window.scrollTo(0, 0);
+                history.push('/flight-results');
             });
         }}>
 
-        <div
-            data-tip={'Take me to '+filmLocation} className='movie' style={{backgroundImage: `url(${infos.urlPoster})`}}>
+            <div
+                data-tip={'Take me to ' + filmLocation} className='movie'
+                style={{backgroundImage: `url(${infos.urlPoster})`}}>
 
-            <h2 className='movie__title'>{infos.title}</h2>
+                <h2 className='movie__title'>{infos.title}</h2>
 
-            <span className='movie__description'>{infos.simplePlot}</span>
+                <span className='movie__description'>{infos.simplePlot}</span>
 
-            <div className='movie__infos'>
-                <MovieInfo name='duration' value={infos.runtime+' Mins'} />
-                <MovieInfo name='year released' value={infos.year} />
-                <MovieInfo name='directors' value={directors} />
-                <MovieInfo name='rating (IMDB)' value={infos.rating} />
-                <MovieInfo name='filming location' value={filmLocation} />
+                <div className='movie__infos'>
+                    <MovieInfo name='duration' value={infos.runtime + ' Mins'}/>
+                    <MovieInfo name='year released' value={infos.year}/>
+                    <MovieInfo name='directors' value={directors}/>
+                    <MovieInfo name='rating (IMDB)' value={infos.rating}/>
+                    <MovieInfo name='filming location' value={filmLocation}/>
+                </div>
+                <ReactTooltip/>
             </div>
-            <ReactTooltip />
-        </div>
 
         </Link>
 
