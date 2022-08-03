@@ -63,3 +63,8 @@ body {
   left:unset!important;;
   height:unset!important;;
 }
+
+.map {
+  display: flex;
+  align-items: center;
+}

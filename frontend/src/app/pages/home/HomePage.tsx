@@ -5,6 +5,8 @@ import {useStore} from '../../store/store';
 import LoginForm from '../user/LoginForm';
 import RegisterForm from '../user/RegisterForm';
 import SkyLogo from '../../../assets/logo.svg';
+import { link } from 'fs';
+
 
 const HomePage = () => {
     const { modalStore, userStore } = useStore();
@@ -17,21 +19,21 @@ const HomePage = () => {
                 </Header>
                 <img src={SkyLogo} alt="sky-logo" width={300} />
                 {userStore.isLoggedIn ? (
-                    <>
-                        <Header as='h2' inverted>
-                            You are logged as: {userStore.user?.username}
-                        </Header>
+                        <>
+                            <Header as='h2' inverted>
+                                You are logged as: {userStore.user?.username}
+                            </Header>
 
-                        <Button.Group size='huge' widths='3' vertical>
-                            <Button as={Link} to='/flights' primary>
-                                Start
-                            </Button>
-                            <Button as={Link} to='/plan-journey'>
-                                Your Upcoming Journeys
-                            </Button>
-                        </Button.Group>
-                    </>
-                )
+                            <Button.Group size='huge' widths='3' vertical>
+                                <Button as={Link} to='/flights' primary>
+                                    Start
+                                </Button>
+                                <Button as={Link} to='/plan-journey'>
+                                    Your Upcoming Journeys
+                                </Button>
+                            </Button.Group>
+                        </>
+                    )
                     :
                     (
                         <>

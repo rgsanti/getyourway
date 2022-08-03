@@ -6,6 +6,7 @@ import FlightSaveTable from '../Table/FlightSaveTable';
 import WeatherPanel from "../../../components/weather/WeatherPanel";
 //import FlightPanel from "../../../components/flight/FlightPanel";
 import {AirportDetail} from "../../../models/flight";
+import MapComponent from '../../../components/maps/MapComponent';
 
 const JourneyDashboard = () => {
     const {flightStore, weatherStore} = useStore();
@@ -68,6 +69,9 @@ const JourneyDashboard = () => {
                     </Grid>
                 </Container>
 
+            </Segment>
+            <Segment>
+                <MapComponent/>
             </Segment>
             <Segment inverter={+true} textAlign="center" vertical className="flight" style={{paddingTop: 0}}>
                 <Container vertical={+true} className="container">
