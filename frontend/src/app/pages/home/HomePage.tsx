@@ -5,7 +5,6 @@ import {useStore} from '../../store/store';
 import LoginForm from '../user/LoginForm';
 import RegisterForm from '../user/RegisterForm';
 import SkyLogo from '../../../assets/logo.svg';
-import { link } from 'fs';
 
 
 const HomePage = () => {

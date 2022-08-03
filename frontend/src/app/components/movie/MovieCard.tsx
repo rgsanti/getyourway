@@ -39,6 +39,7 @@ const MovieCard = ({infos}) => {
     return(
 
         <Link to = "#" style={{color: "#ddd"}}  onClick={()=>{
+            document.getElementById('root').style.display = 'none';
             searchFlights(values)
                 .catch((error: AxiosError) => {
                     const {data, status} = error.response!;
@@ -52,7 +53,10 @@ const MovieCard = ({infos}) => {
                             toast.error('Internal server error! See console log!')
                             break;
                     }
-                }).then(()=>history.push('/flight-results'))
+                }).then(()=>{
+                document.getElementById('root').style.display = 'unset';
+                history.push('/flight-results')
+            })
  ;
         }}>
 

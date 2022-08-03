@@ -6,7 +6,6 @@ import FlightSearchForm from '../Form/FlightSearchForm';
 import {Link} from "react-router-dom";
 import {Icon} from "@iconify/react";
 import CarouselSlider from '../../home/CarouselSlider';
-import MoviePage from '../../MoviePage';
 import '../../../styles/dashboard.css';
 
 const FlightDashboard = () => {
