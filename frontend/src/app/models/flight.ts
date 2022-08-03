@@ -1,6 +1,26 @@
+// @ts-nocheck
 export interface Airport {
     text: string,
     value: string
+}
+
+export class AirportDetail {
+    iata: string = '';
+    name: string = '';
+    city: string = '';
+    country: string = '';
+    lat: number = 0;
+    lon: number = 0;
+    tz: string = '';
+    constructor(json: object) {
+        this.iata=json.iata;
+        this.name=json.name;
+        this.city=json.city;
+        this.country=json.country;
+        this.lat=json.lat;
+        this.lon=json.lon;
+        this.tz=json.tz;
+    }
 }
 
 export interface Flight {

@@ -8,7 +8,7 @@ interface Props {
 
 const LoadingComponent = ({ inverted = true, content = 'Loading...' }: Props) => {
     return (
-        <Dimmer active={true} inverter={inverted}>
+        <Dimmer active={true} inverter={+inverted}>
             <Loader content={content} />
         </Dimmer>
     )

@@ -1,11 +1,16 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import agent from '../api/agent';
+import client from '../api/client';
 import {airportIATAOptions} from '../util/options/AirportOptions';
-import {Airport, Flight, FlightSearchFormValues} from '../models/flight';
+import {ukAirportIATAOptions} from "../util/options/UKAirportOptions";
+import airportDetailsJson from "../util/options/AirportDetails.json";
+import {Airport, AirportDetail, Flight, FlightSearchFormValues} from '../models/flight';
 import {toast} from 'react-toastify';
 
 export default class FlightStore {
     airports: Airport[] = airportIATAOptions;
+    ukAirports: Airport[] = ukAirportIATAOptions;
+    airportCodeToDetailsMap:Map<string, AirportDetail> = new Map();
+    locationToAirportMap:Map<string, AirportDetail> = new Map();
     flights: Flight[] = [];
     savedFlights: Flight[] = [];
     loading = false;
@@ -13,14 +18,23 @@ export default class FlightStore {
     loadingSearch = false;
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this);
+        airportDetailsJson.forEach(airport=>{
+            this.airportCodeToDetailsMap.set(airport.iata, new AirportDetail(airport));
+            this.locationToAirportMap.set(airport.city,new AirportDetail(airport));
+            //manual additions
+            if(airport.iata=='LPL'){
+               this.locationToAirportMap.set('Llandudno',new AirportDetail(airport));
+            }
+        });
+
     }
 
     deleteSelectedSavedFlight = async (id: number) => {
         this.loading = true;
 
         try {
-            await agent.FlightAgent.deleteSave(id);
+            await client.FlightClient.deleteSave(id);
 
             runInAction(() => {
                 this.savedFlights = this.savedFlights.filter(flight => flight.id !== id);
@@ -46,7 +60,7 @@ export default class FlightStore {
         this.loadingInitial = true;
 
         try {
-            const flights = await agent.FlightAgent.getAllSave();
+            const flights = await client.FlightClient.getAllSave();
 
             runInAction(() => {
                 this.savedFlights = flights
@@ -54,10 +68,20 @@ export default class FlightStore {
 
             this.loadingInitial = false;
         }
-        catch (error) {
-            console.error(error);
-            toast.error("Error has occurred. See console log!");
+        catch(error) {
+            // @ts-ignore
+            const {data, status} = error.response!;
 
+            switch (status) {
+                case 403:
+                    toast.error("Unauthorized access!");
+                    window.location.reload();
+                    break;
+                case 500:
+                    console.log(data);
+                    toast.error('Internal server error! See console log!')
+                    break;
+            }
             this.loadingInitial = false;
         }
     }
@@ -67,7 +91,7 @@ export default class FlightStore {
 
         try {
             const selectedFlight = this.flights.find(flight => flight.id === id);
-            await agent.FlightAgent.save(selectedFlight!);
+            await client.FlightClient.save(selectedFlight!);
 
             runInAction(() => {
                 this.flights = this.flights.filter(flight => flight.id !== id);
@@ -87,7 +111,7 @@ export default class FlightStore {
         this.loadingSearch = true;
 
         try {
-            const flights = await agent.FlightAgent.search(search);
+            const flights = await client.FlightClient.search(search);
 
             runInAction(() => {
                 this.flights = flights

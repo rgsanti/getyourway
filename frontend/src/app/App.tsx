@@ -12,6 +12,9 @@ import PrivateRoute from './components/PrivateRoute';
 import JourneyDashboard from './pages/flight/Dashboard/JourneyDashboard';
 import AccountPage from './pages/user/Account';
 import DashboardPage from "./pages/user/Dashboard";
+import MoviePage from "./pages/MoviePage";
+import FlightSearchResultsPage from "./pages/flight/FlightSearchResultsPage";
+import LoginForm from "./pages/user/LoginForm";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -36,9 +39,12 @@ function App() {
         <>
             <Switch>
                 <PrivateRoute path='/flights' component={FlightDashboard} />
+                <PrivateRoute path='/flight-results' component={FlightSearchResultsPage} />
                 <PrivateRoute path='/plan-journey' component={JourneyDashboard} />
                 <PrivateRoute path='/account' component={AccountPage} />
                 <PrivateRoute path='/dashboard' component={DashboardPage} />
+                <PrivateRoute path='/sky-originals' component={MoviePage} />
+                <PrivateRoute path='/loginform' component={LoginForm} />
             </Switch>
         </>
       )} />

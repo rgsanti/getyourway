@@ -23,7 +23,7 @@ const CustomSelectInput = (props: Props) => {
                     clearable
                     options={props.options}
                     search
-                    select
+                    select={+true}
                     value={field.value || null}
                     onChange={(e, d) => helpers.setValue(d.value)}
                     onBlur={() => helpers.setTouched(true)}

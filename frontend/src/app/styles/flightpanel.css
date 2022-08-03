@@ -1,0 +1,59 @@
+
+.flight-panel {
+    background-color: pink;
+    border-radius: 25px;
+    min-width: 350px;
+    height: 180px;
+}
+
+.flight-container {
+    display: flex;
+    width: 100%;
+}
+
+.left-panel {
+    flex: 1;
+    margin: 2em;
+}
+
+#from {
+    margin-top: 10px;
+}
+
+#to {
+    margin-top: 10px;
+}
+
+.center-panel {
+    flex: 1;
+    margin: 0;
+}
+
+.right-panel {
+    flex: 1;
+    margin: 0;
+}
+
+#from-code {
+    margin-bottom: -20px;
+}
+
+#to-code {
+    margin-bottom: -20px;
+}
+
+.flight-container {
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+
+.flight-icon {
+    width: 40%;
+    margin-bottom: -30px;
+}
+
+.flight-date-time {
+    width: 100%;
+    padding-bottom: 0px;
+}
