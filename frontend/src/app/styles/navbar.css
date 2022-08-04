@@ -13,14 +13,15 @@
   .brand {
     /* sets styling for the 'getyouway' link */
     text-decoration: none;
-    color: black;
+    color: #6667AB; 
     margin-left: 1rem;
     font-size: 1.7rem;
   }
   
   .navbar .loginlink {
     margin-left: auto;
-    color: #08d2fb;
+    /* color: #08d2fb;*/
+    color: #6667AB;
   }
  
   .navbar .signuplink {
@@ -29,7 +30,8 @@
 
   .navbar .mainlinks {
     margin-left: auto;
-    color: #08d2fb;
+    /* color: #08d2fb; */
+    color: #6667AB;
   }
 
   .navbar ul {
@@ -54,7 +56,7 @@
   }
 
   .brand a:hover, a:active {
-    color: #08d2fb;
+    color: black;
     background-color: white;
   }
 

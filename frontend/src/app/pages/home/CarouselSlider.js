@@ -32,6 +32,19 @@ const CarouselSlider = () => {
           </div>
         </Carousel.Caption>
       </Carousel.Item>
+      <Carousel.Item interval={3000}>
+        <img
+          className="slide"
+          src="https://img.freepik.com/premium-photo/exotic-tropical-beach-landscape-background-wallpaper-sundown-beach-scene-travel-inspirational-summer-holiday-vacation-concept-tourism-relaxing_1484-2485.jpg?w=2000"
+          alt="Third slide"
+        />
+        <Carousel.Caption>
+        <div className='text3'>
+          <h3>Try somewhere new!</h3>
+          <p></p>
+          </div>
+        </Carousel.Caption>
+      </Carousel.Item>
     </Carousel>
     </>
   )

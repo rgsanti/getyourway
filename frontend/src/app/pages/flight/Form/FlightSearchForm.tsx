@@ -146,7 +146,7 @@ const FlightSearchForm = () => {
                             <Grid.Column centered={+true}>
 
 
-                                <Button.Group size='huge' widths='3'>
+                                <Button.Group size='huge' widths='3' color='facebook'>
                                     <Button
                                         disabled={!isValid || !dirty || isSubmitting || loadingInitial}
                                         loading={isSubmitting || loadingInitial}

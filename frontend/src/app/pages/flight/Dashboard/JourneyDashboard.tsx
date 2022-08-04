@@ -50,14 +50,14 @@ const JourneyDashboard = () => {
                                     {airportDetail.iata !== undefined ? (
                                         <>
                                             <Grid.Column key={1} centered>
-                                            <p style={{marginTop: '1em', marginBottom: '1em', textAlign: 'center', fontSize: '150%'}}>
-                                                <text style={{fontWeight: 'bold'}}>Destination:</text> {airportDetail.city} | 
+                                            <p style={{marginTop: '1em', marginBottom: '1em', textAlign: 'center', fontSize: '150%', color: 'white', whiteSpace: 'nowrap'}}>
+                                                <text style={{fontWeight: 'bold',}}>Destination:</text> {airportDetail.city} | 
                                                 <text style={{fontWeight: 'bold'}}> Timezone:</text> {airportDetail.tz}
                                             </p>
                                             <WeatherPanel airportDetail={airportDetail}/>
                                             </Grid.Column>
                                             <Grid.Column key={2} centered>
-                                                <p style={{fontWeight: 'bold', marginTop: '1em', marginBottom: '1em', textAlign: 'center', fontSize: '150%'}}>
+                                                <p style={{fontWeight: 'bold', marginTop: '1em', marginBottom: '1em', textAlign: 'center', fontSize: '150%', color: 'white'}}>
                                                     Flight Details
                                                 </p>
                                                 {/* <FlightPanel airportDetail={airportDetail} date={savedFlights[0].departureDate} time={savedFlights[0].time}/> */}

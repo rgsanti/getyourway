@@ -64,14 +64,14 @@ const MapComponent = ({flightOriginCode}) => {
                 </Box> */}
 
                 <ButtonGroup>
-                    <Button colorScheme='pink' type='submit' onClick={calculateRoute}>
+                    <Button colorScheme='facebook' type='submit' onClick={calculateRoute}>
                         Find Route
                     </Button>
                 </ButtonGroup>
             </HStack>
 
             <HStack>
-                <Text>
+                <Text style={{color: 'white'}}>
                     Driving Distance: {distance} <br /> Duration: {duration} 
                 </Text>
             </HStack>

@@ -26,7 +26,7 @@ const Navbar = () => {
                             margin: '5px',
                             borderLeftStyle: 'solid',
                             borderRightStyle: 'solid',
-                            borderColor: '#08d2fb',
+                            borderColor: '#d2a4ff' ,
                             padding: '8px'
                         }}>Upcoming Journeys</Link>
                         <Link to='/account' style={{
@@ -35,7 +35,7 @@ const Navbar = () => {
                     </div>
                     <div className='loginlink'>
                         <Link to='#' onClick={() => modalStore.openModal(<LogoutForm />)} style={{
-                            border: '2px solid #08d2fb',
+                            border: '2px solid #d2a4ff' ,
                             borderRadius: '8px',
                             margin: '4px',
                             padding: '14px'

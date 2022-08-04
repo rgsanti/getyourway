@@ -1,11 +1,12 @@
 
 .flight-panel {
-    background-color: pink;
+    background-color: rgb(70, 125, 187);
     border-radius: 25px;
     /* min-width: 525px; */
     height: 180px;
     width: 100%;
     border: white 3px solid;
+    color: white;
 }
 
 .flight-container {
@@ -27,8 +28,11 @@
 }
 
 .center-panel {
-    flex: 1;
-    margin: 0;
+    /* flex: 1;
+    margin: 0; */
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .right-panel {

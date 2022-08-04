@@ -68,7 +68,7 @@ const LoginForm = () => {
                     <Header
                         as='h2'
                         content='Login'
-                        color='teal'
+                        color='purple'
                         textAlign='center'
                     />
 

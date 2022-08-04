@@ -1,5 +1,6 @@
 .weather-panel {
-    background-color: rgba(106, 189, 220, 0.78);
+    /* background-color: rgb(210, 164, 255); */
+    background-color: rgb(70, 125, 187);
     display: flex;
     width: 100%;
     color: white;
