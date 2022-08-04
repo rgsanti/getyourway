@@ -9,8 +9,8 @@ import {toast} from 'react-toastify';
 export default class FlightStore {
     airports: Airport[] = airportIATAOptions;
     ukAirports: Airport[] = ukAirportIATAOptions;
-    airportCodeToDetailsMap:Map<string, AirportDetail> = new Map();
-    locationToAirportMap:Map<string, AirportDetail> = new Map();
+    airportCodeToDetailsMap: Map<string, AirportDetail> = new Map();
+    locationToAirportMap: Map<string, AirportDetail> = new Map();
     flights: Flight[] = [];
     savedFlights: Flight[] = [];
     loading = false;
@@ -19,12 +19,12 @@ export default class FlightStore {
 
     constructor() {
         makeAutoObservable(this);
-        airportDetailsJson.forEach(airport=>{
+        airportDetailsJson.forEach(airport => {
             this.airportCodeToDetailsMap.set(airport.iata, new AirportDetail(airport));
-            this.locationToAirportMap.set(airport.city,new AirportDetail(airport));
+            this.locationToAirportMap.set(airport.city, new AirportDetail(airport));
             //manual additions
-            if(airport.iata=='LPL'){
-               this.locationToAirportMap.set('Llandudno',new AirportDetail(airport));
+            if (airport.iata === 'LPL') {
+                this.locationToAirportMap.set('Llandudno', new AirportDetail(airport));
             }
         });
 
@@ -41,8 +41,7 @@ export default class FlightStore {
                 this.loading = false;
                 toast.success("Flight deleted");
             });
-        }
-        catch (error) {
+        } catch (error) {
             console.error(error);
             toast.error('Error has occurred! See console log!');
 
@@ -67,8 +66,7 @@ export default class FlightStore {
             });
 
             this.loadingInitial = false;
-        }
-        catch(error) {
+        } catch (error) {
             // @ts-ignore
             const {data, status} = error.response!;
 
@@ -98,8 +96,7 @@ export default class FlightStore {
                 this.loading = false;
                 toast.success("Flight saved");
             });
-        }
-        catch (error) {
+        } catch (error) {
             console.error(error);
             toast.error('Error has occurred! See console log!');
 
@@ -121,8 +118,7 @@ export default class FlightStore {
 
             if (flights.length > 0) toast.info("Found " + flights.length + " result(s)!");
             else toast.info("No results were found!");
-        }
-        catch (error) {
+        } catch (error) {
             this.loadingSearch = false;
             throw error;
         }

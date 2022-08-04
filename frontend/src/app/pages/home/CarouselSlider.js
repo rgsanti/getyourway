@@ -6,7 +6,7 @@ const CarouselSlider = () => {
   return(
     <>
     <Carousel>
-      <Carousel.Item interval={3000}>
+      <Carousel.Item interval={5000}>
         <img
           className="slide"
           src="https://wallpapercave.com/wp/wp4492340.jpg"
@@ -19,7 +19,7 @@ const CarouselSlider = () => {
           </div>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={3000}>
+      <Carousel.Item interval={5000}>
         <img
           className="slide"
           src="https://www.gannett-cdn.com/presto/2022/03/17/USAT/168be99c-b253-4e54-a999-996d21d7458a-GettyImages-1296147185.jpg"

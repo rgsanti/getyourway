@@ -44,6 +44,7 @@ const MovieCard = ({infos}) => {
         <Link to="#" style={{color: "#ddd"}} onClick={() => {
             modalStore.openModal(<h5>Searching for flights to {filmLocation}...</h5>);
             document.getElementById('root').style.pointerEvents = 'none';
+            window.scrollTo(0, 0);
             searchFlights(values)
                 .catch((error: AxiosError) => {
                     const {data, status} = error.response!;
@@ -60,7 +61,6 @@ const MovieCard = ({infos}) => {
                 }).then(() => {
                 modalStore.closeModal();
                 document.getElementById('root').style.pointerEvents = 'unset';
-                window.scrollTo(0, 0);
                 history.push('/flight-results');
             });
         }}>

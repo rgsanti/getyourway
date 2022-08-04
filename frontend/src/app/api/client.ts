@@ -4,7 +4,7 @@ import {LoginFormValues, RegisterFormValues, User} from '../models/user';
 import {store} from '../store/store';
 import {Movie} from "../models/movie";
 
-axios.defaults.baseURL = "http://localhost:8090/api";
+axios.defaults.baseURL =process.env.REACT_APP_API_HOST_PORT;
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
