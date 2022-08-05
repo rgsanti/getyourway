@@ -1,6 +1,12 @@
 pipeline {
      agent any
-     tools {nodejs "nodejs"}
+     tools {
+         nodejs "nodejs"
+     }
+     environment {
+         REACT_APP_API_HOST_PORT = credentials('jenkins-react-api-host-port')
+         REACT_APP_GOOGLE_MAPS_API_KEY = credentials('jenkins-react-google-maps-api-key')
+     }
      stages {
         stage("Install dependencies") {
              steps {
