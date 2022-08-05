@@ -15,11 +15,11 @@ import {history} from '../../../../index';
 import MoviePage from "../../MoviePage";
 
 const FlightSearchForm = () => {
-    const { flightStore, userStore } = useStore();
-    const { airports, ukAirports, loadingInitial, searchFlights } = flightStore;
+    const {flightStore, userStore} = useStore();
+    const {airports, ukAirports, loadingInitial, searchFlights} = flightStore;
 
     let newDate = new Date();
-    newDate.setDate(newDate.getDate() + 1 );
+    newDate.setDate(newDate.getDate() + 1);
 
     const initialValues = {
         'originLocationCode': userStore.user?.homeAirportCode,
@@ -58,60 +58,64 @@ const FlightSearchForm = () => {
         <Formik
             initialValues={initialValues}
             validationSchema={Yup.object(validationSchema)}
-            onSubmit={(values, { setErrors }) => searchFlights(values)
-                    .catch((error: AxiosError) => {
-                            const {data, status} = error.response!;
+            onSubmit={(values, {setErrors}) => searchFlights(values)
+                .catch((error: AxiosError) => {
+                    const {data, status} = error.response!;
 
-                            switch (status) {
-                                case 400:
-                                    if (data.originLocationCode) setErrors({errorOrigin: data.originLocationCode});
-                                    if (data.destinationLocationCode) setErrors({errorDestination: data.destinationLocationCode});
-                                    if (data.departureDate) setErrors({errorDeparture: data.departureDate});
-                                    if (data.departureDate) setErrors({errorReturn: data.returnDate});
-                                    if (data.validReturnDate) setErrors({errorReturn: data.validReturnDate});
-                                    if (data.passengerCount) setErrors({errorPassenger: data.passengerCount});
-                                    if (data.currencyCode) setErrors({errorCurrency: data.currencyCode});
-                                    break;
-                                case 403:
-                                    toast.error("Unauthorized access!");
-                                    window.location.reload();
-                                    break;
-                                case 500:
-                                    console.log(data);
-                                    toast.error('Internal server error! See console log!')
-                                    break;
-                            }
-                }).then(()=>history.push('/flight-results'))
-        }
+                    switch (status) {
+                        case 400:
+                            if (data.originLocationCode) setErrors({errorOrigin: data.originLocationCode});
+                            if (data.destinationLocationCode) setErrors({errorDestination: data.destinationLocationCode});
+                            if (data.departureDate) setErrors({errorDeparture: data.departureDate});
+                            if (data.departureDate) setErrors({errorReturn: data.returnDate});
+                            if (data.validReturnDate) setErrors({errorReturn: data.validReturnDate});
+                            if (data.passengerCount) setErrors({errorPassenger: data.passengerCount});
+                            if (data.currencyCode) setErrors({errorCurrency: data.currencyCode});
+                            break;
+                        case 403:
+                            toast.error("Unauthorized access!");
+                            window.location.reload();
+                            break;
+                        case 500:
+                            console.log(data);
+                            toast.error('Internal server error! See console log!')
+                            break;
+                    }
+                }).then(() => {
+                        window.scrollTo(0, 0);
+                        history.push('/flight-results')
+                    }
+                )
+            }
         >
-            {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (
+            {({handleSubmit, isSubmitting, errors, isValid, dirty}) => (
                 <Form
                     className='ui form'
                     onSubmit={handleSubmit}
                     autoComplete='off'
                 >
                     <Grid>
-                          <Grid.Row columns={3} centered>
+                        <Grid.Row columns={3} centered>
 
                             <Grid.Column>
-                                <CustomSelectInput options={ukAirports} placeholder='From' name='originLocationCode' />
+                                <CustomSelectInput options={ukAirports} placeholder='From' name='originLocationCode'/>
                                 <ErrorMessage
                                     name='errorOrigin'
-                                    render={() => (<Label basic color='red' content={errors.errorOrigin} />)} />
+                                    render={() => (<Label basic color='red' content={errors.errorOrigin}/>)}/>
                             </Grid.Column>
 
                             <Grid.Column>
-                                <CustomSelectInput options={airports} placeholder='To' name='destinationLocationCode' />
+                                <CustomSelectInput options={airports} placeholder='To' name='destinationLocationCode'/>
                                 <ErrorMessage
                                     name='errorDestination'
-                                    render={() => (<Label basic color='red' content={errors.errorDestination} />)} />
+                                    render={() => (<Label basic color='red' content={errors.errorDestination}/>)}/>
                             </Grid.Column>
 
                             <Grid.Column>
-                                <CustomTextInput type='number' name='passengerCount' placeholder='Passenger Count' />
+                                <CustomTextInput type='number' name='passengerCount' placeholder='Passenger Count'/>
                                 <ErrorMessage
                                     name='errorPassenger'
-                                    render={() => (<Label basic color='red' content={errors.errorPassenger} />)} />
+                                    render={() => (<Label basic color='red' content={errors.errorPassenger}/>)}/>
                             </Grid.Column>
 
                         </Grid.Row>
@@ -119,24 +123,25 @@ const FlightSearchForm = () => {
                         <Grid.Row columns={3} centered>
 
                             <Grid.Column>
-                                <CustomDateInput name='departureDate' title='Departure Date' minDate={newDate} />
+                                <CustomDateInput name='departureDate' title='Departure Date' minDate={newDate}/>
                                 <ErrorMessage
                                     name='errorDeparture'
-                                    render={() => (<Label basic color='red' content={errors.errorDeparture} />)} />
+                                    render={() => (<Label basic color='red' content={errors.errorDeparture}/>)}/>
                             </Grid.Column>
 
                             <Grid.Column>
-                                <CustomDateInput name='returnDate' title='Return Date' minDate={newDate} />
+                                <CustomDateInput name='returnDate' title='Return Date' minDate={newDate}/>
                                 <ErrorMessage
                                     name='errorReturn'
-                                    render={() => (<Label basic color='red' content={errors.errorReturn} />)} />
+                                    render={() => (<Label basic color='red' content={errors.errorReturn}/>)}/>
                             </Grid.Column>
 
                             <Grid.Column>
-                                <CustomSelectInput options={currencyOptions} name='currencyCode' placeholder='Currency' />
+                                <CustomSelectInput options={currencyOptions} name='currencyCode'
+                                                   placeholder='Currency'/>
                                 <ErrorMessage
                                     name='errorCurrency'
-                                    render={() => (<Label basic color='red' content={errors.errorCurrency} />)} />
+                                    render={() => (<Label basic color='red' content={errors.errorCurrency}/>)}/>
                             </Grid.Column>
 
                         </Grid.Row>
@@ -155,11 +160,11 @@ const FlightSearchForm = () => {
                                         primary
                                     />
                                 </Button.Group>
-                                
+
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
-                    <MoviePage />
+                    <MoviePage/>
                 </Form>
             )}
 

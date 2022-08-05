@@ -1,9 +1,9 @@
-import React, {useState, useRef} from 'react';
-import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api'
-import { Box, Flex, HStack, Input, ButtonGroup, Button, Text, ChakraProvider, theme, Center } from '@chakra-ui/react'
-import { useStore } from '../../store/store';
+import React, {useRef, useState} from 'react';
+import {Autocomplete, DirectionsRenderer, GoogleMap, useJsApiLoader} from '@react-google-maps/api'
+import {Box, Button, ButtonGroup, Center, ChakraProvider, Flex, HStack, Input, Text, theme} from '@chakra-ui/react'
+import {useStore} from '../../store/store';
 
-const center = { lat: 51.5074, lng: 0.1272}
+const center = {lat: 51.5074, lng: 0.1272}
 
 const MapComponent = ({flightOriginCode}) => {
 
@@ -11,7 +11,7 @@ const MapComponent = ({flightOriginCode}) => {
 
     const {flightStore} = useStore();
 
-    const { isLoaded } = useJsApiLoader({
+    const {isLoaded} = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries: ['places']
     })
@@ -29,7 +29,7 @@ const MapComponent = ({flightOriginCode}) => {
     while (!isLoaded) {
         return <h1>Loading...</h1>
     }
-    
+
     async function calculateRoute() {
         if (originRef.current.value === '') {
             return
@@ -47,56 +47,57 @@ const MapComponent = ({flightOriginCode}) => {
 
     return (
         <Center>
-        <Flex position='relative' flexDirection='column' alignItems='center' h='100vh' w='100vw'>
+            <Flex position='relative' flexDirection='column' alignItems='center' h='100vh' w='100vw'>
 
-            <ChakraProvider theme={theme}>
+                <ChakraProvider theme={theme}>
 
-            <HStack spacing={2}>
-                <Box>
-                    <Autocomplete>
-                        <Input type='text' placeholder='Origin' ref={originRef}/>
-                    </Autocomplete>
-                </Box>
-                {/* <Box>
-                     <Autocomplete>
-                        <Input type='text' placeholder='Destination' ref={destinationRef}/>
-                    </Autocomplete>
-                </Box> */}
+                    <HStack spacing={2}>
+                        <Box>
+                            <Autocomplete>
+                                <Input type='text' placeholder='Enter your origin' ref={originRef}
+                                       style={{backgroundColor: "white", width: "215px"}}/>
+                            </Autocomplete>
+                        </Box>
 
-                <ButtonGroup>
-                    <Button colorScheme='facebook' type='submit' onClick={calculateRoute}>
-                        Find Route
-                    </Button>
-                </ButtonGroup>
-            </HStack>
+                        <ButtonGroup>
+                            <Button colorScheme='facebook' type='submit' onClick={calculateRoute}>
+                                Find Route
+                            </Button>
+                        </ButtonGroup>
+                    </HStack>
 
-            <HStack>
-                <Text style={{color: 'white'}}>
-                    Driving Distance: {distance} <br /> Duration: {duration} 
-                </Text>
-            </HStack>
+                    {distance !== '' ?
+                        <>
+                            <HStack>
+                                <Text style={{textShadow: "1px 1px black", color: 'white', fontSize: '20px', textAlign:"left"}}>
+                                    <br/> Driving Distance: <strong>{distance}</strong> <br/> Driving Duration: <strong>{duration}</strong>
+                                </Text>
+                            </HStack>
+                            <Box position='relative' left='8%' top='2%' h='100%' w='100%'>
+                                <GoogleMap
+                                    center={center}
+                                    zoom={15}
+                                    mapContainerStyle={{width: '85%', height: '95%'}}
+                                    options={{
+                                        zoomControl: false,
+                                        streetViewControl: false,
+                                        mapTypeControl: false,
+                                        fullscreenControl: false,
+                                    }}
+                                    onLoad={map => setMap(map)}>
+                                    {directionsResponse && (
+                                        <DirectionsRenderer directions={directionsResponse}/>
+                                    )}
+                                </GoogleMap>
+                            </Box>
+                        </>
+                        : <></>
+                    }
 
-            <Box position='relative' left='17%' top='2%' h='100%' w='100%'>
-                <GoogleMap
-                center={center}
-                zoom={15}
-                mapContainerStyle={{ width: '70%', height: '95%' }}
-                options={{
-                    zoomControl: false,
-                    streetViewControl: false,
-                    mapTypeControl: false,
-                    fullscreenControl: false,
-                }}
-                onLoad={map => setMap(map)}>
-                {directionsResponse && (
-                    <DirectionsRenderer directions={directionsResponse} />
-                )}
-                </GoogleMap>
-            </Box>
 
-            </ChakraProvider>
+                </ChakraProvider>
 
-        </Flex>
+            </Flex>
         </Center>
     )
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import '../../styles/flightpanel.css'
-import { useStore } from '../../store/store';
+import {useStore} from '../../store/store';
 import {Icon} from "@iconify/react";
 
 const FlightPanel = ({airportDetail, flightDate, flightOriginCode}) => {
 
-  const {userStore, flightStore} = useStore();
+  const {flightStore} = useStore();
 
   return (
     <div className='flight-panel'>

@@ -5,9 +5,8 @@ import {useStore} from '../../../store/store';
 import FlightSaveTable from '../Table/FlightSaveTable';
 import WeatherPanel from "../../../components/weather/WeatherPanel";
 import FlightPanel from "../../../components/flight/FlightPanel";
-import {AirportDetail, FlightFormValues} from "../../../models/flight";
+import {AirportDetail} from "../../../models/flight";
 import MapComponent from '../../../components/maps/MapComponent';
-import { FlightDetail } from '../../../models/flight';
 
 const JourneyDashboard = () => {
     const {flightStore, weatherStore} = useStore();
@@ -46,39 +45,46 @@ const JourneyDashboard = () => {
                     <p></p>
                     <Grid divided='vertically'>
                         <Grid.Row columns={2}>
-                            {/* <Grid.Column key={1} centered> */}
-                                    {airportDetail.iata !== undefined ? (
-                                        <>
-                                            <Grid.Column key={1} centered>
-                                            <p style={{marginTop: '1em', marginBottom: '1em', textAlign: 'center', fontSize: '150%', color: 'white', whiteSpace: 'nowrap'}}>
-                                                <text style={{fontWeight: 'bold',}}>Destination:</text> {airportDetail.city} | 
-                                                <text style={{fontWeight: 'bold'}}> Timezone:</text> {airportDetail.tz}
-                                            </p>
-                                            <WeatherPanel airportDetail={airportDetail}/>
-                                            </Grid.Column>
-                                            <Grid.Column key={2} centered>
-                                                <p style={{fontWeight: 'bold', marginTop: '1em', marginBottom: '1em', textAlign: 'center', fontSize: '150%', color: 'white'}}>
-                                                    Flight Details
-                                                </p>
-                                                {/* <FlightPanel airportDetail={airportDetail} date={savedFlights[0].departureDate} time={savedFlights[0].time}/> */}
-                                                <FlightPanel airportDetail={airportDetail} flightDate={flightDate} flightOriginCode={flightOriginCode}/>
-                                            </Grid.Column>
-                                        </>) : (<>
-                                        <h5 style={{
+                            {airportDetail.iata !== undefined ? (
+                                <>
+                                    <Grid.Column key={1} centered>
+                                        <p style={{
                                             marginTop: '1em',
-                                            marginLeft: '1em',
-                                            color: "grey",
-                                            textAlign: "center",
-                                            fontSize: '20px'
-                                        }}>No Upcoming Journey</h5>
-                                    </>)}
-                            {/* </Grid.Column> */}
-                            {/* <Grid.Column key={2}>
-                                            <p style={{fontWeight: 'bold', marginTop: '3em', marginBottom: '1em', textAlign: 'center'}}>
-                                                Your Flight Details
-                                            </p>
-                                <FlightPanel airportDetail={airportDetail} />
-                            </Grid.Column> */}
+                                            marginBottom: '1em',
+                                            textAlign: 'center',
+                                            fontSize: '150%',
+                                            color: 'white',
+                                            whiteSpace: 'nowrap'
+                                        }}>
+                                            <text style={{fontWeight: 'bold',}}>Destination: </text>
+                                            {airportDetail.city} |
+                                            <text style={{fontWeight: 'bold'}}> Timezone:</text> {airportDetail.tz}
+                                        </p>
+                                        <WeatherPanel airportDetail={airportDetail}/>
+                                    </Grid.Column>
+                                    <Grid.Column key={2} centered>
+                                        <p style={{
+                                            fontWeight: 'bold',
+                                            marginTop: '1em',
+                                            marginBottom: '1em',
+                                            textAlign: 'center',
+                                            fontSize: '150%',
+                                            color: 'white'
+                                        }}>
+                                            Flight Details
+                                        </p>
+                                        <FlightPanel airportDetail={airportDetail} flightDate={flightDate}
+                                                     flightOriginCode={flightOriginCode}/>
+                                    </Grid.Column>
+                                </>) : (<>
+                                <h5 style={{
+                                    marginTop: '1em',
+                                    marginLeft: '0.5em',
+                                    color: "lightgrey",
+                                    textAlign: "center",
+                                    fontSize: '20px'
+                                }}>No Upcoming Journey</h5>
+                            </>)}
                         </Grid.Row>
                     </Grid>
                 </Container>

@@ -26,6 +26,13 @@ export default class FlightStore {
             if (airport.iata === 'LPL') {
                 this.locationToAirportMap.set('Llandudno', new AirportDetail(airport));
             }
+            if (airport.iata === 'ADL') {
+                this.locationToAirportMap.set('Adelaide Studios', new AirportDetail(airport));
+            }
+            if (airport.iata === 'BNA') {
+                this.locationToAirportMap.set('Watertown', new AirportDetail(airport));
+                this.locationToAirportMap.set('Nashville', new AirportDetail(airport));
+            }
         });
 
     }

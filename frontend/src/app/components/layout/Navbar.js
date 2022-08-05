@@ -24,9 +24,9 @@ const Navbar = () => {
                         }}>Home</Link>
                         <Link to='/plan-journey' style={{
                             margin: '5px',
-                            borderLeftStyle: 'solid',
+/*                            borderLeftStyle: 'solid',
                             borderRightStyle: 'solid',
-                            borderColor: '#d2a4ff' ,
+                            borderColor: '#d2a4ff' ,*/
                             padding: '8px'
                         }}>Upcoming Journeys</Link>
                         <Link to='/account' style={{

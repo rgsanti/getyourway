@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Grid, GridRow } from "semantic-ui-react";
+import {Grid} from "semantic-ui-react";
 
 const DirectionsForm = () => {
     return (
