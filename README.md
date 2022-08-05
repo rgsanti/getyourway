@@ -1,82 +1,54 @@
-# getyourway
+# getyourway react frontend
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## First time setup
+> npm install
 
-1. ensure mysql server is running.
-2. run the commands within src/main/resources/db/schema.sql inside your local mysql database.
-   > mysql -u root < src/main/resources/db/schema.sql
-3. install the maven dependencies for the spring-boot project
-   > mvn install
-4. install the npm dependencies for the frontend
-   > cd frontend/ && npm install && cd ..
+## To start the frontend on localhost:3000
+> npm start
 
-### To start the server (also creates the DB tables)
+# Getting Started with Create React App
 
-> mvn spring-boot:run
+## Available Scripts
 
-### To start the frontend
+In the project directory, you can run:
 
-run this in a new terminal instance - it will start the UI on localhost:3000
-> cd frontend/ && npm start
+### `npm start`
 
-## Documentation
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The current MySQL db schema:
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-![Schema](src/main/resources/db/schema.png)
+### `npm test`
 
-Things worth noting regarding the schema:
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- A user can have zero to many journeys. A journey is composed of zero to many flights and trains (both of which inherit
-  properties of Transport). The relationship is controlled through foreign keys and joins.
-- The `time` column currently has the duration of the flight/train journey leg in seconds. React converts this to hours
-  and minutes for display purposes.
-- While the database tables for train exist, only flight endpoints have been implemented.
-- `journey_step_order`: is the position of the particular flight or train in relation to the journey instance.
-  Currently,
-  this is hardcoded to 1 within the 'FlightServiceImpl.save(flightDTO)' method.
-    - The idea of journey_step_order is to give you the sequential order of the legs of the journey (be it a train or
-      flight).
-      So say we have a 3 leg journey from LHR to IST (London to Istanbul):
-        - Flight from LHR to GLA
-        - Train from GLA to EDI
-        - Flight from EDI to IST
-    - In the database we would have:
-        - 1 row in the journey table origin LHR, Dest IST.
-        - 2 rows in the flight table that link to the above journey row.
-            - flight row 1: {origin:LHR,dest:GLA,journey_step_order:1,journey_id:1}
-            - flight row 2: {origin:EDI,dest:IST,journey_step_order:3,journey_id:1}
-        - 1 row in the train table
-            - train row: {origin:GLA,dest:EDI,journey_step_order:2,journey_id:1}
-- `transfer_count`: when it is one it means it is a direct flight, more than one means there are `transfer_count - 1`
-  connections.
+### `npm run build`
 
-The `liquibase` plugin is used to create the database tables for us and keep track of any manual changes done to the
-database. Aka
-it's a version control for the database itself.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Steps to change the schema:
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-- make the change in your local MySQL db instance then run
-  > mvn liquibase:diff
-- this will add the change commands within src/main/resources/db/changelog. Commit this file so that other devs will
-  automatically get your db schema changes on the next pull and rerun.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### Backend config
+### `npm run eject`
 
-The backend Spring config is located within src/main/resources/
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-- application.properties states which config files (based on profile name) to use. To run locally it would be: common,
-  local
-- application-common.yml contains the defaults
-- Example: You want to change the local-profile backend logging level to DEBUG:
-  - Within application-local.properties add this line then restart the springboot server:
-  > logging.level.org.springframework.web=DEBUG
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### Frontend notes
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-- client.ts defines the links to the controller endpoints on the backend.
-- Not added postcode as part of the register form, but it is defined in the db schema/backend.
-- `currencyCode` was added as part of the search as Amadeus flight API returns the flight costs in the airline’s
-  currency -
-  this ensures it's converted to GBP (default) or the desired currency.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).

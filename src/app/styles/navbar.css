@@ -1,0 +1,82 @@
+.navbar {
+    /* sets base styling for each navbar component */
+    padding: 0.5rem 0rem;
+    display: flex;
+    height: 60px;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #f2f2f2;
+  }
+
+  .brand {
+    /* sets styling for the 'getyouway' link */
+    text-decoration: none;
+    color: #6667AB;
+    margin-left: 1rem;
+    font-size: 1.7rem;
+  }
+
+  .navbar .loginlink {
+    margin-left: auto;
+    /* color: #08d2fb;*/
+    /*color: #6667AB;*/
+    color: #3f3f7c;
+  }
+
+  .navbar .signuplink {
+    color: white;
+  }
+
+  .navbar .mainlinks {
+    margin-left: auto;
+    /* color: #08d2fb; */
+    /*color: #6667AB;*/
+    color: #3f3f7c;
+  }
+
+  .navbar ul {
+    display: flex;
+    padding: 0;
+  }
+
+  .navbar li {
+    list-style-type: none;
+    margin: 0 1rem;
+  }
+
+  .navbar li a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+
+.navbar a:link, a:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .brand a:hover, a:active {
+    color: black;
+    background-color: white;
+  }
+
+  .mainlinks a:hover, a:active {
+    color: #f1356d;
+    background-color: white;
+  }
+
+  .signuplink a:link, a:visited {
+    background-color: #08d2fb;
+    text-decoration: none;
+  }
+
+  .loginlink a:hover, a:active {
+    background-color: grey;
+    color: white;
+  }
+
+  .signuplink a:hover, a:active {
+    background-color: grey;
+  } 

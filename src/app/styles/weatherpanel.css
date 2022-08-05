@@ -1,0 +1,32 @@
+.weather-panel {
+    background-color: rgb(70, 125, 187);
+    display: flex;
+    width: 100%;
+    color: white;
+    border-radius: 25px;
+    border: white 3px solid;
+    height: 180px;
+    align-items: center;
+}
+
+.left-panel {
+    margin-left: 20px;
+    flex: 1;
+    width: 100px;
+}
+
+.right-panel {
+    margin-right: 20px;
+    flex: 1;
+}
+
+.weather-container {
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.weather-img {
+    width: 90%;
+}
