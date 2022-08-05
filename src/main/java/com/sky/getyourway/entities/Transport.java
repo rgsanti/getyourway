@@ -1,7 +1,8 @@
 package com.sky.getyourway.entities;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -10,9 +11,10 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 @MappedSuperclass
 @NoArgsConstructor
-@Data
 public abstract class Transport implements Serializable {
 
     @Id

@@ -23,6 +23,20 @@ export class AirportDetail {
     }
 }
 
+export class FlightDetail {
+    id: number = 0;
+    originLocationCode: string = '';
+    departureDate: Date = null;
+    time: number = 0;
+
+    constructor(json: object) {
+        this.id = json.id;
+        this.originLocationCode = json.originLocationCode;
+        this.departureDate = json.departureDate;
+        this.time = json.time;
+    }
+}
+
 export interface Flight {
     id: number,
     originLocationCode: string;

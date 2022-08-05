@@ -20,9 +20,9 @@ const HomePage = () => {
                 {userStore.isLoggedIn ? (
                         <>
                             <Header as='h2' inverted>
-                                You are logged as: {userStore.user?.username}
+                                Hello {userStore.user?.firstname}
                             </Header>
-
+                            <p></p>
                             <Button.Group size='huge' widths='3' vertical>
                                 <Button as={Link} to='/flights' primary>
                                     Start

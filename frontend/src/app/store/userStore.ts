@@ -44,7 +44,7 @@ export default class UserStore {
 
     register = async (register: RegisterFormValues) => {
         try {
-            const user = await client.UserClient.register(register);
+            await client.UserClient.register(register);
             history.push('/');
             store.modalStore.closeModal();
             toast.success('Registration success! You can now login!');

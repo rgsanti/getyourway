@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 @RequestMapping("/api/flight")
 public class FlightController
 {

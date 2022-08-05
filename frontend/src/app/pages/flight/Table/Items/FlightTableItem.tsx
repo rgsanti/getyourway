@@ -35,7 +35,7 @@ const FlightTableItem = ({ flight }: Props) => {
                     loading={flightStore.loading && target === flight.id.toString()}
                     onClick={(e) => handleSaveSelectedFlight(e, flight.id)}
                     content="Add to journey"
-                    color="blue" />
+                    color='facebook' />
             </Table.Cell>
         </Table.Row>
     );

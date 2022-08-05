@@ -8,7 +8,6 @@ import {Button, Divider, Header, Label} from 'semantic-ui-react';
 import {AxiosError} from 'axios';
 import CustomTextInput from '../../components/form/CustomTextInput';
 import {toast} from 'react-toastify';
-import {useHistory} from 'react-router-dom';
 
 const LoginForm = () => {
     const { modalStore, userStore } = useStore();
@@ -28,12 +27,6 @@ const LoginForm = () => {
         password: Yup.string().required('Password is required!')
     }
 
-    const history = useHistory();
-
-    const routeChange = () =>{ 
-        let path = `/flights`; 
-        history.push(path);
-      }
 
     return (
         <Formik
@@ -68,7 +61,7 @@ const LoginForm = () => {
                     <Header
                         as='h2'
                         content='Login'
-                        color='teal'
+                        color='purple'
                         textAlign='center'
                     />
 
